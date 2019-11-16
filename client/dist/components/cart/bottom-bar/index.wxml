@@ -43,7 +43,7 @@
             </block>
         </block>
         <block wx:if="{{showConfirm}}">
-            <modal compid="{{$compid__9}}"></modal>
+            <modal compid="{{$compid__7}}"></modal>
         </block>
     </view>
 </block>

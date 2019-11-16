@@ -10,7 +10,7 @@
         </block>
         <block>
             <block wx:if="{{hasCommodity}}">
-                <view class="cart_commodity" wx:key="$original.shop.venderId" wx:for="{{loopArray8}}" wx:for-item="commodity" wx:for-index="_anonIdx4">
+                <view class="cart_commodity" wx:key="$original.shop.venderId" wx:for="{{loopArray9}}" wx:for-item="commodity" wx:for-index="_anonIdx4">
                     <view class="cart_commodity_header" bindtap="gotoShop" data-e-tap-so="this" data-e-tap-a-a="{{commodity.$original.shop.venderId}}">
                         <image class="cart_commodity_header_image" src="{{'http:' + commodity.$original.shop.thumbnail}}" mode="widthFix" lazy-load="{{true}}"></image>
                     </view>

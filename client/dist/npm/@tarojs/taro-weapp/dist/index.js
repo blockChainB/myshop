@@ -4,6 +4,56 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var taro = require("../../taro/index.js");
 
+/* eslint-disable */
+var objectIs = Object.is || function (x, y) {
+  if (x === y) {
+    return x !== 0 || 1 / x === 1 / y;
+  }
+
+  return x !== x && y !== y;
+};
+
+function shallowEqual(obj1, obj2) {
+  if (obj1 === null && obj2 === null) {
+    return true;
+  }
+
+  if (obj1 === null || obj2 === null) {
+    return false;
+  }
+
+  if (objectIs(obj1, obj2)) {
+    return true;
+  }
+
+  var obj1Keys = obj1 ? Object.keys(obj1) : [];
+  var obj2Keys = obj2 ? Object.keys(obj2) : [];
+
+  if (obj1Keys.length !== obj2Keys.length) {
+    return false;
+  }
+
+  for (var i = 0; i < obj1Keys.length; i++) {
+    var obj1KeyItem = obj1Keys[i];
+
+    if (!obj2.hasOwnProperty(obj1KeyItem) || !objectIs(obj1[obj1KeyItem], obj2[obj1KeyItem])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function addLeadingSlash(path) {
+  return path.charAt(0) === '/' ? path : '/' + path;
+}
+
+function getCurrentPageUrl() {
+  var pages = getCurrentPages();
+  var currentPage = pages[pages.length - 1];
+  return addLeadingSlash(currentPage.route || currentPage.__route__);
+}
+
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     _typeof = function (obj) {
@@ -989,56 +1039,6 @@ var propTypes = createCommonjsModule(function (module) {
   }
 });
 
-/* eslint-disable */
-Object.is = Object.is || function (x, y) {
-  if (x === y) {
-    return x !== 0 || 1 / x === 1 / y;
-  }
-
-  return x !== x && y !== y;
-};
-
-function shallowEqual(obj1, obj2) {
-  if (obj1 === null && obj2 === null) {
-    return true;
-  }
-
-  if (obj1 === null || obj2 === null) {
-    return false;
-  }
-
-  if (Object.is(obj1, obj2)) {
-    return true;
-  }
-
-  var obj1Keys = obj1 ? Object.keys(obj1) : [];
-  var obj2Keys = obj2 ? Object.keys(obj2) : [];
-
-  if (obj1Keys.length !== obj2Keys.length) {
-    return false;
-  }
-
-  for (var i = 0; i < obj1Keys.length; i++) {
-    var obj1KeyItem = obj1Keys[i];
-
-    if (!obj2.hasOwnProperty(obj1KeyItem) || !Object.is(obj1[obj1KeyItem], obj2[obj1KeyItem])) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-function addLeadingSlash(path) {
-  return path.charAt(0) === '/' ? path : '/' + path;
-}
-
-function getCurrentPageUrl() {
-  var pages = getCurrentPages();
-  var currentPage = pages[pages.length - 1];
-  return addLeadingSlash(currentPage.route || currentPage.__route__);
-}
-
 /** Detect free variable `global` from Node.js. */
 
 var freeGlobal = _typeof(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
@@ -1862,6 +1862,16 @@ function componentTrigger(component, key, args) {
       });
       component.refs = Object.assign({}, component.refs || {}, refs);
     }
+
+    if (component['$$hasLoopRef']) {
+      taro.Current.current = component;
+      component._disableEffect = true;
+
+      component._createData(component.state, component.props, true);
+
+      component._disableEffect = false;
+      taro.Current.current = null;
+    }
   }
 
   if (key === 'componentWillUnmount') {
@@ -2004,6 +2014,13 @@ function createComponent(ComponentClass, isPage) {
           hook.cleanup();
         }
       });
+      var events = component.$$renderPropsEvents;
+
+      if (isArray(events)) {
+        events.forEach(function (e) {
+          return taro.eventCenter.off(e);
+        });
+      }
     }
   };
 
@@ -2225,9 +2242,6 @@ function doUpdate(component, prevProps, prevState) {
   var data = state || {};
 
   if (component._createData) {
-    // 返回null或undefined则保持不变
-    var runLoopRef = !component.__mounted;
-
     if (component.__isReady) {
       injectContextType(component);
       taro.Current.current = component;
@@ -2235,7 +2249,7 @@ function doUpdate(component, prevProps, prevState) {
       taro.invokeEffects(component, true);
     }
 
-    data = component._createData(state, props, runLoopRef) || data;
+    data = component._createData(state, props) || data;
 
     if (component.__isReady) {
       taro.Current.current = null;
@@ -2302,11 +2316,13 @@ function doUpdate(component, prevProps, prevState) {
       }
 
       if (component['$$hasLoopRef']) {
+        taro.Current.current = component;
         component._disableEffect = true;
 
         component._createData(component.state, component.props, true);
 
         component._disableEffect = false;
+        taro.Current.current = null;
       }
 
       if (isFunction(component.componentDidUpdate)) {
@@ -2920,7 +2936,8 @@ var Taro = {
   useImperativeHandle: taro.useImperativeHandle,
   useContext: taro.useContext,
   createContext: taro.createContext,
-  memo: taro.memo
+  memo: taro.memo,
+  shallowEqual: shallowEqual
 };
 initNativeApi(Taro);
 

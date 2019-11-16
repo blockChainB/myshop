@@ -23,7 +23,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#ffffff',
-      navigationBarTitleText: 'Taro商城',
+      navigationBarTitleText: 'ACQUIT',
       navigationBarTextStyle: 'black'
     },
     tabBar: {
@@ -63,7 +63,7 @@ class App extends Component {
   componentDidMount () {
     if (process.env.TARO_ENV === 'weapp') {
       Taro.cloud.init({
-        env: 'env-8772f0', // 获取环境ID：前往 云开发控制台-设置-环境ID
+        env: 'holo-env-30guo', // 获取环境ID：前往 云开发控制台-设置-环境ID holo-env-30guo
         traceUser: true // 是否要捕捉每个用户的访问记录。设置为true，用户可在管理端看到用户访问记录
       })
     }

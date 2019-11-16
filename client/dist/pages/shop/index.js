@@ -49,7 +49,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__5", "isFirst", "SEARCH_BAR_MORE_IMAGE", "showMore", "banner", "floors", "params"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__8", "isFirst", "SEARCH_BAR_MORE_IMAGE", "showMore", "banner", "floors", "params"], _this.config = {
       navigationBarTitleText: ''
     }, _this.customComponents = ["SearchInto"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -104,6 +104,20 @@ var Shop = (_temp2 = _class = function (_AtBase) {
 
       return componentWillMount;
     }()
+    //   const db = wx.cloud.database()
+    //   db.collection('userData').where({
+    //     _id: options._id
+    //   }).get({
+    //     success: res => {
+    //       that.setData({
+    //         userPart: res.data,
+    //         number:options._id
+    //       })
+    // ————————————————
+    // 版权声明：本文为CSDN博主「谁都不许动我的砖」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+    // 原文链接：https://blog.csdn.net/qq_41966009/article/details/96599623
+
+
   }, {
     key: "getShopData",
     value: function () {
@@ -139,6 +153,9 @@ var Shop = (_temp2 = _class = function (_AtBase) {
                   _index2.default.setNavigationBarTitle({
                     title: afterData.title
                   });
+                } else {
+                  // TODO: 异常处理
+                  console.log('.....');
                 }
 
               case 4:
@@ -194,7 +211,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__5 = (0, _index.genCompid)(__prefix + "$compid__5");
+      var $compid__8 = (0, _index.genCompid)(__prefix + "$compid__8");
 
       var _state = this.__state,
           isFirst = _state.isFirst,
@@ -202,16 +219,18 @@ var Shop = (_temp2 = _class = function (_AtBase) {
           floors = _state.floors,
           showMore = _state.showMore;
 
+
+      console.log("banner", banner);
       var isIphonex = (0, _index3.getSystemInfo)().isIpx;
       var anonymousState__temp = !isFirst ? (0, _index.internal_inline_style)(isIphonex ? 'padding-bottom: 164rpx;' : '') : null;
       !isFirst && _index.propsManager.set({
         "cls": "small",
         "placeholder": "\u641C\u7D22\u5E97\u94FA\u5185\u5546\u54C1",
         "type": "shop"
-      }, $compid__5);
+      }, $compid__8);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__5: $compid__5,
+        $compid__8: $compid__8,
         SEARCH_BAR_MORE_IMAGE: SEARCH_BAR_MORE_IMAGE
       });
       return this.__state;

@@ -3,7 +3,7 @@
 	"cloudfunctionRoot": "cloud/functions/",
 	"projectname": "eshop",
 	"description": "电商小程序",
-	"appid": "wx4a2ed3a6f3f189cc",
+	"appid": "wx7d6fadf2ce592265",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,

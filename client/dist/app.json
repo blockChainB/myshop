@@ -10,7 +10,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "Taro商城",
+    "navigationBarTitleText": "ACQUIT",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -44,6 +44,5 @@
     "connectSocket": 10000,
     "uploadFile": 10000,
     "downloadFile": 10000
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }

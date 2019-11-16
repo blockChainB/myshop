@@ -1550,9 +1550,12 @@ function () {
 
       var nextChain = this._getNextChain();
 
-      return nextInterceptor(nextChain).catch(function (err) {
+      var p = nextInterceptor(nextChain);
+      var res = p.catch(function (err) {
         return Promise.reject(err);
       });
+      if (typeof p.abort === 'function') res.abort = p.abort;
+      return res;
     }
   }, {
     key: "_getNextInterceptor",
@@ -2047,7 +2050,7 @@ function invokeScheduleEffects(component) {
 function useEffectImpl(effect, deps, delay) {
   var hook = getHooks(Current.index++);
 
-  if (Current.current._disableHooks || !Current.current.__isReady) {
+  if (Current.current._disableEffect || !Current.current.__isReady) {
     return;
   }
 
@@ -2203,19 +2206,22 @@ function createContext(defaultValue) {
 }
 
 function memo(component, propsAreEqual) {
-  component.prototype.shouldComponentUpdate = function (nextProps) {
-    return isFunction$1(propsAreEqual) ? !propsAreEqual(this.props, nextProps) : !objectIs(this.props, nextProps);
+  component.prototype.shouldComponentUpdate = function (nextProps, nextState) {
+    return !objectIs(this.state, nextState) || (isFunction$1(propsAreEqual) ? !propsAreEqual(this.props, nextProps) : !objectIs(this.props, nextProps));
   };
 
   return component;
 }
 
 /* eslint-disable camelcase */
-var eventCenter = new Events();
+
+{
+  exports.eventCenter = new Events();
+}
 var index = {
   Component: Component,
   Events: Events,
-  eventCenter: eventCenter,
+  eventCenter: exports.eventCenter,
   getEnv: getEnv,
   ENV_TYPE: ENV_TYPE,
   render: render,
@@ -2249,7 +2255,6 @@ var index = {
 
 exports.Component = Component;
 exports.Events = Events;
-exports.eventCenter = eventCenter;
 exports.getEnv = getEnv;
 exports.ENV_TYPE = ENV_TYPE;
 exports.render = render;

@@ -17,7 +17,7 @@ export default class Index extends AtBase {
   }
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: 'ACQUIT'
   }
 
   async componentWillMount () {

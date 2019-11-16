@@ -1,6 +1,11 @@
 const app = require('wx-server-sdk')
 
-app.init()
+app.init({
+    env: 'holo-env-30guo', // 获取环境ID：前往 云开发控制台-设置-环境ID holo-env-30guo
+    traceUser: true // 是否要捕捉每个用户的访问记录。设置为true，用户可在管理端看到用户访问记录
+
+})
+
 
 const typeMap = {
     ADD: '2',
@@ -22,11 +27,15 @@ async function getNewCartData({ cartInfo, shopMap }) {
             let newItem = item
             // 如果没有商品的具体信息
             if (!item.info) {
-                // 获得商品的具体信息
+                // 获得商品的具体信息 [0]
                 let allItemData = await comColl.doc(item.skuId).get()
-                allItemData = allItemData.data[0]
-                // 加上venderId
+                allItemData = allItemData.data
+                // 加上venderId item
+                console.log('......')
+              console.log("allItemData", allItemData)
+              console.log("item", item)
                 if (!item.venderId) {
+                    // item.skuId  allItemData.venderId
                     item.venderId = allItemData.venderId
                 }
                 item.venderId += ''

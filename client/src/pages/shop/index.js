@@ -44,6 +44,19 @@ export default class Shop extends AtBase {
     }
     await this.getShopData(venderId)
   }
+//   const db = wx.cloud.database()
+//   db.collection('userData').where({
+//     _id: options._id
+//   }).get({
+//     success: res => {
+//       that.setData({
+//         userPart: res.data,
+//         number:options._id
+//       })
+// ————————————————
+// 版权声明：本文为CSDN博主「谁都不许动我的砖」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/qq_41966009/article/details/96599623
+
 
   async getShopData (venderId) {
     const res = await Taro.cloud.callFunction({
@@ -69,6 +82,7 @@ export default class Shop extends AtBase {
       })
     } else {
       // TODO: 异常处理
+      console.log('.....')
     }
   }
 
@@ -94,7 +108,11 @@ export default class Shop extends AtBase {
   }
 
   render () {
+
+    
     const { isFirst, banner, floors, showMore } = this.state
+
+    console.log("banner", banner);
     const isIphonex = getSystemInfo().isIpx
     return (
       !isFirst && (
