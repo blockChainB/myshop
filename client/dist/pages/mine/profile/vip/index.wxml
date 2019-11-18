@@ -1,0 +1,10 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="user-profile-vip" style="{{anonymousState__temp}}">
+        <image class="user-profile-vip__gift" src="{{gift}}"></image>
+        <view class="user-profile-vip__desc"><text class="user-profile-vip__desc-txt">超级会员</text>
+            <view class="user-profile-vip__desc-wrap"><text class="user-profile-vip__desc-wrap-txt">免费试用</text>
+                <image class="user-profile-vip__desc-wrap-img" src="{{right}}"></image>
+            </view>
+        </view>
+    </view>
+</block>

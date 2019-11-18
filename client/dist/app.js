@@ -44,7 +44,7 @@ var _App = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/shop/index', 'pages/index/index', 'pages/cart/index', 'pages/order/list/index', 'pages/news/index', 'pages/mine/index', 'pages/detail/index', 'pages/order/detail/index'],
+      pages: ['pages/shop/index', 'pages/index/index', 'pages/cart/index', "pages/mine/order/list/index", 'pages/news/index', 'pages/mine/index', 'pages/detail/index', 'pages/mine/order/detail/index'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#ffffff',
@@ -70,12 +70,15 @@ var _App = function (_BaseComponent) {
           text: '购物车',
           iconPath: 'asset/shoppingbag.png',
           selectedIconPath: 'asset/shoppingbag_active.png'
-        }, {
-          pagePath: 'pages/order/list/index',
-          text: '订单',
-          iconPath: 'asset/mine.png',
-          selectedIconPath: 'asset/mine_active.png'
-        }, {
+        },
+
+        // {
+        //   pagePath: 'pages/order/list/index',
+        //   text: '订单',
+        //   iconPath: 'asset/mine.png',
+        //   selectedIconPath: 'asset/mine_active.png'
+        // },
+        {
           pagePath: "pages/mine/index",
           iconPath: "./asset/user.png",
           selectedIconPath: "./asset/user-active.png",

@@ -1,0 +1,27 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="user-profile">
+        <image class="user-profile__bg" src="{{anonymousState__temp}}" mode="widthFix"></image>
+        <view class="user-profile__wrap">
+            <view class="user-profile__avatar">
+                <image class="user-profile__avatar-img" src="{{userInfo.avatar}}" bindtap="handleLogin"></image>
+            </view>
+            <view class="user-profile__info" bindtap="handleLogin"><text class="user-profile__info-name">{{userInfo.login ? userInfo.nickname : '未登录'}}</text>
+                <block>
+                    <block wx:if="{{userInfo.login}}">
+                        <view class="user-profile__info-wrap">
+                            <image class="user-profile__info-level" src="{{anonymousState__temp2}}"></image><text class="user-profile__info-uid">{{anonymousState__temp3}}</text>
+                        </view>
+                    </block>
+                    <block wx:else><text class="user-profile__info-tip">点击登录账号</text>
+                    </block>
+                </block>
+            </view>
+            <view class="user-profile__extra">
+                <view class="user-profile__extra-qr">
+                    <image class="user-profile__extra-qr-img" src="{{anonymousState__temp4}}"></image>
+                </view>
+            </view>
+            <vip></vip>
+        </view>
+    </view>
+</block>

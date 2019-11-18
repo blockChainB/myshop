@@ -184,7 +184,7 @@ var BottomBar = (_temp2 = _class = function (_AtBase) {
                   }
                 }).then(function () {
                   _index2.default.hideLoading();
-                  _this3.jumpUrl('/pages/order/list/index');
+                  _this3.jumpUrl('/pages/mine/order/list/index');
                 });
 
               case 8:

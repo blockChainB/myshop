@@ -1,0 +1,7 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="user-menu">
+        <view wx:key="$original.key" class="{{menu.$loopState__temp2}}" bindtap="handleClick" wx:for="{{loopArray14}}" wx:for-item="menu" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{menu.$original}}">
+            <image class="user-menu__item-img" src="{{menu.$original.img}}"></image><text class="user-menu__item-txt">{{menu.$original.text}}</text>
+        </view>
+    </view>
+</block>

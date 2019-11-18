@@ -1,0 +1,5 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="user-activity">
+        <image class="user-activity__img" src="{{active ? picActive : pic}}"></image>
+    </view>
+</block>

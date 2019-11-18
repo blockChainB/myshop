@@ -16,11 +16,11 @@ class App extends Component {
       'pages/shop/index',
       'pages/index/index',
       'pages/cart/index',
-      'pages/order/list/index',
+      "pages/mine/order/list/index",
       'pages/news/index',
       'pages/mine/index',
       'pages/detail/index',
-      'pages/order/detail/index',
+      'pages/mine/order/detail/index',
 
     ],
     window: {
@@ -54,12 +54,12 @@ class App extends Component {
           selectedIconPath: 'asset/shoppingbag_active.png'
         },
 
-        {
-          pagePath: 'pages/order/list/index',
-          text: '订单',
-          iconPath: 'asset/mine.png',
-          selectedIconPath: 'asset/mine_active.png'
-        },
+        // {
+        //   pagePath: 'pages/order/list/index',
+        //   text: '订单',
+        //   iconPath: 'asset/mine.png',
+        //   selectedIconPath: 'asset/mine_active.png'
+        // },
         {
           pagePath: "pages/mine/index",
           iconPath: "./asset/user.png",

@@ -104,7 +104,7 @@ export default class BottomBar extends AtBase {
       })
       .then(() => {
         Taro.hideLoading()
-        this.jumpUrl('/pages/order/list/index')
+        this.jumpUrl('/pages/mine/order/list/index')
       })
   }
 

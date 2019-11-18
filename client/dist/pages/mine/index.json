@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "search-into": "../../components/search-into/index"
+    "profile": "./profile/index",
+    "menu": "./menu/index",
+    "activity": "./activity/index"
   },
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "个人中心"
 }

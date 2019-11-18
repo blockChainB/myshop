@@ -44,7 +44,7 @@ var Commondity = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Commondity.__proto__ || Object.getPrototypeOf(Commondity)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray11", "$compid__7", "commoditys", "isEditStatus", "changeNumMap", "hasCommodity", "showConfirm", "isNeedFixedBar", "isFixedBar", "isFetching", "editSkuData"], _this.customComponents = ["Modal"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Commondity.__proto__ || Object.getPrototypeOf(Commondity)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray10", "$compid__7", "commoditys", "isEditStatus", "changeNumMap", "hasCommodity", "showConfirm", "isNeedFixedBar", "isFixedBar", "isFetching", "editSkuData"], _this.customComponents = ["Modal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Commondity, [{
@@ -236,7 +236,7 @@ var Commondity = (_temp2 = _class = function (_AtBase) {
       var hasCommodity = commoditys.length !== 0;
 
       var isNeedFixedBar = isFixedBar && hasCommodity;
-      var loopArray11 = commoditys.map(function (commodity, _anonIdx3) {
+      var loopArray10 = commoditys.map(function (commodity, _anonIdx3) {
         commodity = {
           $original: (0, _index.internal_get_original)(commodity)
         };
@@ -253,7 +253,7 @@ var Commondity = (_temp2 = _class = function (_AtBase) {
         "onConfirmCallback": this.delCart.bind(this)
       }, $compid__7);
       Object.assign(this.__state, {
-        loopArray11: loopArray11,
+        loopArray10: loopArray10,
         $compid__7: $compid__7,
         commoditys: commoditys,
         isEditStatus: isEditStatus,
