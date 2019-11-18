@@ -8,7 +8,7 @@ export default class AtBase extends Component {
     let method = options.method || 'navigateTo'
 
     const tabList = [
-      'pages/index/index',
+      'pages/shop/index',
       'pages/cart/index',
       'pages/order/list/index',
     ]
