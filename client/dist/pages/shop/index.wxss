@@ -157,7 +157,7 @@ page {
   width: 750rpx; }
 
 .shop_item .img_1 {
-  height: 170rpx; }
+  height: 100rpx; }
 
 .shop_item .img_2 {
   height: 500rpx; }

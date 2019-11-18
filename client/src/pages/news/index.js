@@ -49,29 +49,31 @@ export default class Shop extends AtBase {
 
   async getShopData (venderId) {
     const res = await Taro.cloud.callFunction({
-      name: 'shop',
+      name: 'news',
       data: {
-        $url: 'getShop',
-        data: venderId
+        $url: 'getNews',
+       
       }
     })
     // 成功调用
     if (this.successCode(res)) {
       const afterData = this.getDataContent(res)
-      console.log("afterData",afterData);
+      console.log("getNews",afterData);
+      const arryData = afterData.data;
       this.setState({
         params: {
           venderId
         },
+        data:arryData,
         showMore: false,
         isFirst: false,
         ...afterData
       })
       Taro.setNavigationBarTitle({
         // title: afterData.title
-        title: "ACQUIT"
+        title: "ACQUIT-资讯"
       })
-      // console.log('.....1')
+      console.log('.....data',this.state.data);
       // Taro.redirectTo(`/pages/detail/index?skuId=1`)
 
     } else {
@@ -111,9 +113,9 @@ export default class Shop extends AtBase {
   render () {
 
     
-    const { isFirst, banner, floors, showMore } = this.state
+    const { isFirst, data, floors, showMore } = this.state
 
-    console.log("banner", banner);
+    // console.log("banner", banner);
     
 
     const isIphonex = getSystemInfo().isIpx
@@ -123,7 +125,7 @@ export default class Shop extends AtBase {
           className='shop_nocate'
           style={isIphonex ? 'padding-bottom: 164rpx;' : ''}
         >
-          <View className='topbar'>
+          {/* <View className='topbar' >
             <SearchInto cls='small' placeholder='搜索店铺内商品' type='shop' />
             <View className='topbar_search_action'>
               <View
@@ -145,7 +147,7 @@ export default class Shop extends AtBase {
                       </View>
                       <View
                         className='topbar_search_more_tohome'
-                        onClick={this.onGotoPage.bind(this, 'index')}
+                        onClick={this.onGotoPage.bind(this, 'shop')}
                       >
                         回到首页
                       </View>
@@ -158,8 +160,8 @@ export default class Shop extends AtBase {
                     </View>
                   </View>
                 )}
-              </View>
-              {showMore && (
+              </View> */}
+              {/* {showMore && (
                 <View
                   className='mask'
                   onClick={this.toggleShowMore.bind(this)}
@@ -167,87 +169,44 @@ export default class Shop extends AtBase {
               )}
             </View>
           </View>
-          <ScrollView scrollY className='shop_main-scroll'>
-            <Swiper
-              className='shop_main_swiper'
-              indicatorDots
-              indicatorColor='#ddd'
-              indicatorActiveColor='#232323'
-              current={0}
-              interval='3000'
-              duration='300'
-              circular
-              autoplay
-            >
-              {banner.map((item, index) => {
-                return (
-                  <SwiperItem key={index}>
-                    <Image
-                      src={item}
-                      mode='widthFix'
-                      className='shop_main_swiper_item_image'
-                    />
-                  </SwiperItem>
-                )
-              })}
-            </Swiper>
-            <View className='shop_floor'>
-              {floors.map((floor, index) => {
-                return (
-                  <View key={index} className='shop_floor_item'>
-                    <View className='shop_floor_title'>
-                      <Image
-                        className='shop_floor_title_img'
-                        src={'http:' + floor.title}
-                        mode='widthFix'
-                      />
-                    </View>
-                    {floor.desc && (
-                      <View className='shop_floor_desc'>
-                        <Image
-                          className='shop_floor_desc_img'
-                          src={floor.desc}
-                          mode='widthFix'
-                        />
-                      </View>
-                    )}
-                    {floor.commodities.map((item, floorIndex) => {
+           */}
+          <ScrollView className='goods' scrollY>
+
+                   {data.map((item, floorIndex) => {
+                      // console.log(floorIndex,item);
                       return (
                         <View
                           key={floorIndex}
                           className='goods_item'
-                          onClick={this.onGotoDetail.bind(this, item.skuId)}
+                          onClick={this.onGotoDetail.bind(this, item.url)}
                         >
                           <View className='goods_img'>
                             <Image
                               className='goods_img_image'
-                              src={item.images[0]}
-                              mode='widthFix'
+                              src={item.img}
+                              mode='aspectFill'
                               lazyLoad
                             />
                           </View>
                           <View className='goods_info'>
                             <Text
                               className='goods_name'
-                              onClick={this.onGotoDetail.bind(this, item.skuId)}
+                              onClick={this.onGotoDetail.bind(this, item.url)}
                             >
-                              {item.skuName}
+                              {"标题: " + item.title}
                             </Text>
                             <Text
                               className='goods_price goods_price_new'
-                              decode
+
                             >
-                              ￥{item.price}
+                              {"简介: " + item.des}
                             </Text>
                           </View>
                         </View>
                       )
                     })}
-                  </View>
-                )
-              })}
-            </View>
-          </ScrollView>
+            </ScrollView>
+
         </View>
       )
     )

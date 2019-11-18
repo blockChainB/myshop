@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "search-into": "../../components/search-into/index"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": ""
 }

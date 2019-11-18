@@ -49,9 +49,9 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__5", "isFirst", "SEARCH_BAR_MORE_IMAGE", "showMore", "banner", "floors", "params"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "isFirst", "data", "params", "showMore", "banner", "floors"], _this.config = {
       navigationBarTitleText: ''
-    }, _this.customComponents = ["SearchInto"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Shop, [{
@@ -108,17 +108,17 @@ var Shop = (_temp2 = _class = function (_AtBase) {
     key: "getShopData",
     value: function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(venderId) {
-        var res, afterData;
+        var res, afterData, arryData;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
                 return _index2.default.cloud.callFunction({
-                  name: 'shop',
+                  name: 'news',
                   data: {
-                    $url: 'getShop',
-                    data: venderId
+                    $url: 'getNews'
+
                   }
                 });
 
@@ -129,19 +129,22 @@ var Shop = (_temp2 = _class = function (_AtBase) {
                 if (this.successCode(res)) {
                   afterData = this.getDataContent(res);
 
-                  console.log("afterData", afterData);
+                  console.log("getNews", afterData);
+                  arryData = afterData.data;
+
                   this.setState(_extends({
                     params: {
                       venderId: venderId
                     },
+                    data: arryData,
                     showMore: false,
                     isFirst: false
                   }, afterData));
                   _index2.default.setNavigationBarTitle({
                     // title: afterData.title
-                    title: "ACQUIT"
+                    title: "ACQUIT-资讯"
                   });
-                  // console.log('.....1')
+                  console.log('.....data', this.state.data);
                   // Taro.redirectTo(`/pages/detail/index?skuId=1`)
                 } else {
                   // TODO: 异常处理
@@ -209,35 +212,28 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__5 = (0, _index.genCompid)(__prefix + "$compid__5");
 
       var _state = this.__state,
           isFirst = _state.isFirst,
-          banner = _state.banner,
+          data = _state.data,
           floors = _state.floors,
           showMore = _state.showMore;
 
+      // console.log("banner", banner);
 
-      console.log("banner", banner);
 
       var isIphonex = (0, _index3.getSystemInfo)().isIpx;
       var anonymousState__temp = !isFirst ? (0, _index.internal_inline_style)(isIphonex ? 'padding-bottom: 164rpx;' : '') : null;
-      !isFirst && _index.propsManager.set({
-        "cls": "small",
-        "placeholder": "\u641C\u7D22\u5E97\u94FA\u5185\u5546\u54C1",
-        "type": "shop"
-      }, $compid__5);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__5: $compid__5,
-        SEARCH_BAR_MORE_IMAGE: SEARCH_BAR_MORE_IMAGE
+        data: data
       });
       return this.__state;
     }
   }]);
 
   return Shop;
-}(_base2.default), _class.$$events = ["toggleShowMore", "connectService", "onGotoPage", "onGotoDetail"], _class.$$componentPath = "pages/news/index", _temp2);
+}(_base2.default), _class.$$events = ["onGotoDetail"], _class.$$componentPath = "pages/news/index", _temp2);
 exports.default = Shop;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Shop, true));
