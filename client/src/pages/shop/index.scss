@@ -16,7 +16,8 @@ page {
 }
 
 .topbar {
-  display: flex;
+  // display: flex;
+  display: none;
   flex-direction: row;
   height: 120px;
   flex-shrink: 0;

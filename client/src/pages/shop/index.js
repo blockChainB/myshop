@@ -95,7 +95,7 @@ export default class Shop extends AtBase {
   // more里的联系客服
   connectService () {
     Taro.makePhoneCall({
-      phoneNumber: '000000000000' //仅为示例，并非真实的电话号码
+      phoneNumber: '13265636826' //仅为示例，并非真实的电话号码
     })
   }
 
@@ -119,11 +119,13 @@ export default class Shop extends AtBase {
     const isIphonex = getSystemInfo().isIpx
     return (
       !isFirst && (
+
         <View
           className='shop_nocate'
           style={isIphonex ? 'padding-bottom: 164rpx;' : ''}
         >
-          <View className='topbar'>
+
+          <View className='topbar' >
             <SearchInto cls='small' placeholder='搜索店铺内商品' type='shop' />
             <View className='topbar_search_action'>
               <View
@@ -145,7 +147,8 @@ export default class Shop extends AtBase {
                       </View>
                       <View
                         className='topbar_search_more_tohome'
-                        onClick={this.onGotoPage.bind(this, 'index')}
+                        // onClick={this.onGotoPage.bind(this, 'index')}
+                        onClick={this.onGotoPage.bind(this, 'shop')}
                       >
                         回到首页
                       </View>
@@ -159,6 +162,7 @@ export default class Shop extends AtBase {
                   </View>
                 )}
               </View>
+              
               {showMore && (
                 <View
                   className='mask'

@@ -2,7 +2,7 @@
     <block wx:if="{{!isFirst}}">
         <view class="shop_nocate" style="{{anonymousState__temp}}">
             <view class="topbar">
-                <search-into compid="{{$compid__49}}"></search-into>
+                <search-into compid="{{$compid__11}}"></search-into>
                 <view class="topbar_search_action">
                     <view class="topbar_search_more" bindtap="toggleShowMore" data-e-tap-so="this">
                         <image class="topbar_search_icon topbar_search_icon_more" src="{{SEARCH_BAR_MORE_IMAGE}}"></image>
@@ -10,7 +10,7 @@
                             <view class="topbar_search_more_container">
                                 <view class="topbar_search_more_container-inner">
                                     <view class="topbar_search_more_connect" bindtap="connectService" data-e-tap-so="this">联系客服</view>
-                                    <view class="topbar_search_more_tohome" bindtap="onGotoPage" data-e-tap-so="this" data-e-tap-a-a="index">回到首页</view>
+                                    <view class="topbar_search_more_tohome" bindtap="onGotoPage" data-e-tap-so="this" data-e-tap-a-a="shop">回到首页</view>
                                     <view class="topbar_search_more_tocart" bindtap="onGotoPage" data-e-tap-so="this" data-e-tap-a-a="cart">购物车</view>
                                 </view>
                             </view>

@@ -38,7 +38,7 @@ var AtBase = function (_Component) {
       var pages = _index2.default.getCurrentPages();
       var method = options.method || 'navigateTo';
 
-      var tabList = ['pages/index/index', 'pages/cart/index', 'pages/order/list/index'];
+      var tabList = ['pages/shop/index', 'pages/cart/index', 'pages/order/list/index'];
 
       if (url && typeof url === 'string') {
         if (tabList.findIndex(function (x) {

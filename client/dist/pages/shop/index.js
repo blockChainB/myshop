@@ -49,7 +49,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__49", "isFirst", "SEARCH_BAR_MORE_IMAGE", "showMore", "banner", "floors", "params"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__11", "isFirst", "SEARCH_BAR_MORE_IMAGE", "showMore", "banner", "floors", "params"], _this.config = {
       navigationBarTitleText: ''
     }, _this.customComponents = ["SearchInto"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -187,7 +187,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
     key: "connectService",
     value: function connectService() {
       _index2.default.makePhoneCall({
-        phoneNumber: '000000000000' //仅为示例，并非真实的电话号码
+        phoneNumber: '13265636826' //仅为示例，并非真实的电话号码
       });
     }
   }, {
@@ -209,7 +209,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__49 = (0, _index.genCompid)(__prefix + "$compid__49");
+      var $compid__11 = (0, _index.genCompid)(__prefix + "$compid__11");
 
       var _state = this.__state,
           isFirst = _state.isFirst,
@@ -226,10 +226,10 @@ var Shop = (_temp2 = _class = function (_AtBase) {
         "cls": "small",
         "placeholder": "\u641C\u7D22\u5E97\u94FA\u5185\u5546\u54C1",
         "type": "shop"
-      }, $compid__49);
+      }, $compid__11);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__49: $compid__49,
+        $compid__11: $compid__11,
         SEARCH_BAR_MORE_IMAGE: SEARCH_BAR_MORE_IMAGE
       });
       return this.__state;
