@@ -266,6 +266,7 @@ var Detail = (_temp2 = _class = function (_AtBase) {
           showSizeValue = _state.showSizeValue,
           sku = _state.sku;
 
+      console.log("addToCart", showColorValue, showSizeValue, sku);
       var newSku = [{
         skuId: sku.skuId,
         num: 1,

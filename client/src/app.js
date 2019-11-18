@@ -13,12 +13,15 @@ import './app.scss'
 class App extends Component {
   config = {
     pages: [
+      'pages/shop/index',
       'pages/index/index',
       'pages/cart/index',
       'pages/order/list/index',
-      'pages/shop/index',
+      'pages/news/index',
+      'pages/mine/index',
       'pages/detail/index',
-      'pages/order/detail/index'
+      'pages/order/detail/index',
+
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -32,28 +35,43 @@ class App extends Component {
       backgroundColor: '#222222',
       list: [
         {
-          pagePath: 'pages/index/index',
+          pagePath: 'pages/shop/index',
           text: '首页',
           iconPath: 'asset/home.png',
           selectedIconPath: 'asset/home_active.png'
         },
+        {
+          pagePath: 'pages/news/index',
+          text: '资讯',
+          iconPath: 'asset/shoppingbag.png',
+          selectedIconPath: 'asset/shoppingbag_active.png'
+        },
+
         {
           pagePath: 'pages/cart/index',
           text: '购物车',
           iconPath: 'asset/shoppingbag.png',
           selectedIconPath: 'asset/shoppingbag_active.png'
         },
+
         {
           pagePath: 'pages/order/list/index',
           text: '订单',
           iconPath: 'asset/mine.png',
           selectedIconPath: 'asset/mine_active.png'
+        },
+        {
+          pagePath: "pages/mine/index",
+          iconPath: "./asset/user.png",
+          selectedIconPath: "./asset/user-active.png",
+          text: "个人"
         }
+        
       ]
     },
     cloud: true,
     networkTimeout: {
-      request: 6000,
+      request: 60000,
       connectSocket: 10000,
       uploadFile: 10000,
       downloadFile: 10000

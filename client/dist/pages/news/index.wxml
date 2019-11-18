@@ -2,7 +2,7 @@
     <block wx:if="{{!isFirst}}">
         <view class="shop_nocate" style="{{anonymousState__temp}}">
             <view class="topbar">
-                <search-into compid="{{$compid__49}}"></search-into>
+                <search-into compid="{{$compid__59}}"></search-into>
                 <view class="topbar_search_action">
                     <view class="topbar_search_more" bindtap="toggleShowMore" data-e-tap-so="this">
                         <image class="topbar_search_icon topbar_search_icon_more" src="{{SEARCH_BAR_MORE_IMAGE}}"></image>

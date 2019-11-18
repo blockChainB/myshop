@@ -161,6 +161,7 @@ export default class Detail extends AtBase {
 
   addToCart () {
     const { showColorValue, showSizeValue, sku } = this.state
+    console.log("addToCart",showColorValue, showSizeValue, sku);
     const newSku = [
       {
         skuId: sku.skuId,

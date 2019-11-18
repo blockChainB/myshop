@@ -48,7 +48,7 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cart.__proto__ || Object.getPrototypeOf(Cart)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__1", "$compid__2", "$compid__3", "$compid__4", "cartClass", "showEidtBox", "isLogin", "isFixedBar", "__fn_on"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cart.__proto__ || Object.getPrototypeOf(Cart)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__61", "$compid__62", "$compid__63", "$compid__64", "cartClass", "showEidtBox", "isLogin", "isFixedBar", "__fn_on"], _this.config = {
       navigationBarTitleText: '购物车',
       backgroundColor: '#f2efef',
       disableScroll: true
@@ -395,10 +395,10 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__1 = (0, _index.genCompid)(__prefix + "$compid__1");
-      var $compid__2 = (0, _index.genCompid)(__prefix + "$compid__2");
-      var $compid__3 = (0, _index.genCompid)(__prefix + "$compid__3");
-      var $compid__4 = (0, _index.genCompid)(__prefix + "$compid__4");
+      var $compid__61 = (0, _index.genCompid)(__prefix + "$compid__61");
+      var $compid__62 = (0, _index.genCompid)(__prefix + "$compid__62");
+      var $compid__63 = (0, _index.genCompid)(__prefix + "$compid__63");
+      var $compid__64 = (0, _index.genCompid)(__prefix + "$compid__64");
 
       var _state = this.__state,
           isLogin = _state.isLogin,
@@ -426,14 +426,14 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
         "commoditys": commoditys,
         "isFetching": isFetching,
         "editSkuData": editSkuData
-      }, $compid__1);
+      }, $compid__61);
       _index.propsManager.set({
         "footmark": editSkuData.footmark
-      }, $compid__2);
+      }, $compid__62);
       showEidtBox && _index.propsManager.set({
         "onHideEditBox": this.onHideEditBox.bind(this),
         "editSkuData": editSkuData
-      }, $compid__3);
+      }, $compid__63);
       _index.propsManager.set({
         "isLogin": isLogin,
         "isSub": isSub,
@@ -443,12 +443,12 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
         "checkAll": checkAll,
         "checkDelAll": checkDelAll,
         "commoditys": commoditys
-      }, $compid__4);
+      }, $compid__64);
       Object.assign(this.__state, {
-        $compid__1: $compid__1,
-        $compid__2: $compid__2,
-        $compid__3: $compid__3,
-        $compid__4: $compid__4,
+        $compid__61: $compid__61,
+        $compid__62: $compid__62,
+        $compid__63: $compid__63,
+        $compid__64: $compid__64,
         cartClass: cartClass,
         showEidtBox: showEidtBox
       });

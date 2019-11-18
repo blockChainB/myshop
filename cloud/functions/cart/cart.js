@@ -13,8 +13,9 @@ exports.getCart = async (db, data) => {
         }
     }
 
-    console.log(_id)
+    console.log(_id,"getCart ,_id")
     const res = await cartColl.where({ _id }).get()
+    console.log(res,"getCart ,res")
     if (res.data.length === 0) {
         await cartColl.add(cartData)
     } else {
@@ -30,6 +31,7 @@ exports.getCart = async (db, data) => {
 
 exports.editCart = async (db, data) => {
     const { _id, skus, type } = data
+    console.log("exports.editCart ", _id, skus, type)
     const cartColl = db.collection('Cart')
 
     // 补存num字段

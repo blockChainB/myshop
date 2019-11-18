@@ -44,7 +44,7 @@ var Index = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__15", "floorList"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__50", "floorList"], _this.config = {
       navigationBarTitleText: 'ACQUIT'
     }, _this.customComponents = ["SearchInto"], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -114,13 +114,13 @@ var Index = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__15 = (0, _index.genCompid)(__prefix + "$compid__15");
+      var $compid__50 = (0, _index.genCompid)(__prefix + "$compid__50");
       _index.propsManager.set({
         "placeholder": "\u641C\u7D22\u6846",
         "type": "index"
-      }, $compid__15);
+      }, $compid__50);
       Object.assign(this.__state, {
-        $compid__15: $compid__15
+        $compid__50: $compid__50
       });
       return this.__state;
     }
