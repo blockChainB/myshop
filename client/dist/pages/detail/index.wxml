@@ -92,8 +92,8 @@
                             </view>
                         </view>
                         <view class="dlayer_summary">
-                            <view class="summary_row summary_address" bindtap="selecteAddress">
-                                <view class="summary_row_in flex_row"><text class="summary_row_tit">送至：</text><text class="summary_row_cont">{{areasName}}</text>
+                            <view class="summary_row summary_address" bindtap="selecteAddress" data-e-tap-so="this">
+                                <view class="summary_row_in flex_row"><text class="summary_row_tit">点击修改地址：</text><text class="summary_row_cont">{{areasName}}</text>
                                 </view>
                                 <view class="summary_row_in flex_row paddingTop22"><text class="summary_row_tit">运费：</text><text class="summary_row_cont">¥14</text>
                                 </view>

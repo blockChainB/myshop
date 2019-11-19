@@ -35,8 +35,8 @@
   border-radius: 50rpx;
   overflow: hidden; }
   .user-profile__avatar .user-profile__avatar-img {
-    width: 140rpx;
-    height: 140rpx; }
+    width: 100rpx;
+    height: 100rpx; }
 
 .user-profile__info {
   -webkit-box-flex: 1;

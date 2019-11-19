@@ -46,27 +46,39 @@ var mine = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = mine.__proto__ || Object.getPrototypeOf(mine)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__9", "userInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = mine.__proto__ || Object.getPrototypeOf(mine)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__6", "userInfo"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.handleLogin = function () {
-      _index2.default.navigateTo({
-        url: '/pages/user-login/user-login'
-      });
+      console.log('handleLogin');
+      if (!_this.state.userInfo.nickName) {}
     }, _this.customComponents = ["Profile", "Menu", "Activity"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(mine, [{
     key: "_constructor",
-    value: function _constructor(props) {
-      _get(mine.prototype.__proto__ || Object.getPrototypeOf(mine.prototype), "_constructor", this).call(this, props);
-
+    value: function _constructor() {
+      _get(mine.prototype.__proto__ || Object.getPrototypeOf(mine.prototype), "_constructor", this).apply(this, arguments);
+      this.state = {
+        userInfo: {}
+      };
       this.$$refs = [];
     }
   }, {
     key: "componentDidShow",
     value: function componentDidShow() {
-      // this.props.dispatchUser()
-      // this.props.dispatchCartNum()
+      try {
+        var value = _index2.default.getStorageSync('userInfo');
+        if (value) {
+          console.log("value", value);
+
+          this.setState({
+            userInfo: value
+          });
+          //  this.render();
+        }
+      } catch (e) {
+        // Do something when catch error
+      }
     }
   }, {
     key: "_createData",
@@ -76,17 +88,16 @@ var mine = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__9 = (0, _index.genCompid)(__prefix + "$compid__9");
+      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
 
-      var userInfo = this.__props.userInfo;
+      var userInfo = this.__state.userInfo;
 
-
+      console.log("userInfo", userInfo);
       _index.propsManager.set({
         "userInfo": userInfo
-      }, $compid__9);
+      }, $compid__6);
       Object.assign(this.__state, {
-        $compid__9: $compid__9,
-        userInfo: userInfo
+        $compid__6: $compid__6
       });
       return this.__state;
     }

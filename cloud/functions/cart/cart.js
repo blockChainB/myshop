@@ -29,9 +29,9 @@ exports.getCart = async (db, data) => {
     return newCartData
 }
 
-exports.editCart = async (db, data) => {
+exports.editCart = async (db, data,addressInfo) => {
     const { _id, skus, type } = data
-    console.log("exports.editCart ", _id, skus, type)
+    console.log("exports.editCart ", _id, skus, type,addressInfo)
     const cartColl = db.collection('Cart')
 
     // 补存num字段
@@ -61,6 +61,7 @@ exports.editCart = async (db, data) => {
             break
         case typeMap['ADD']:
             newCartInfo = addCart(oldCartInfo, skus)
+           
             break
         case typeMap['DEL']:
             newCartInfo = delCart(oldCartInfo, skus)
@@ -78,9 +79,9 @@ exports.editCart = async (db, data) => {
             break
     }
 
-    // 得到新的购物车数据
+    // 得到新的购物车数据 
     const cartData = await getNewCartData({ cartInfo: newCartInfo, shopMap })
-
+    cartData.address= addressInfo 
     // 更新数据
     await cartColl.doc(_id).update({ data: cartData })
 
@@ -106,7 +107,7 @@ function addCart(oldCartInfo, skus) {
         sku.isCheck = true
     })
     let spliceIdx
-    // 更新购物车中的商品数据
+    // 更新购物车中的商品数据 里面有bug ,同id的话,颜色不同,居然被覆盖了
     let newCartInfo = oldCartInfo.map(item => {
         const temp = skus.filter((sku, idx) => {
             if (item.skuId === sku.skuId) {
@@ -120,6 +121,7 @@ function addCart(oldCartInfo, skus) {
             item.isCheck = temp.isCheck
             item.size = temp.size
             item.color = temp.color
+            item.addressInfo = temp.addressInfo
         }
 
         return item

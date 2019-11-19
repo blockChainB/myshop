@@ -20,7 +20,7 @@ async function getNewCartData({ cartInfo, shopMap }) {
     const db = app.database()
     const comColl = db.collection('Commodity')
     const shopColl = db.collection('Shop')
-
+    console.log("cartInfo",cartInfo);
     const newShopMap = {}
     const allCartInfoData = await Promise.all(
         cartInfo.map(async item => {

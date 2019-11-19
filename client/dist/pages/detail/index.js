@@ -50,7 +50,7 @@ var Detail = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["sku", "isFirst", "isIpx", "detailInfoRow", "serviceInfo", "isShowCartLayer", "colorValue", "sizeValue", "bagImage", "cartNum", "systemInfo", "skuId", "areaId", "areasName", "showAddress", "showMore", "showColorValue", "showSizeValue"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detail.__proto__ || Object.getPrototypeOf(Detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["sku", "isFirst", "isIpx", "detailInfoRow", "serviceInfo", "isShowCartLayer", "colorValue", "sizeValue", "bagImage", "cartNum", "systemInfo", "skuId", "areaId", "areasName", "ihoneNum", "showAddress", "showMore", "showColorValue", "showSizeValue", "addressInfo", "textValue"], _this.config = {
       navigationBarTitleText: '商品详情',
       enablePullDownRefresh: false,
       disableScroll: true
@@ -84,6 +84,7 @@ var Detail = (_temp2 = _class = function (_AtBase) {
         skuId: '',
         areaId: '1-72-4137-0',
         areasName: '深圳市宝安区龙光世纪大厦',
+        ihoneNum: '119',
         showAddress: false,
         isIpx: false,
         showMore: false,
@@ -92,7 +93,9 @@ var Detail = (_temp2 = _class = function (_AtBase) {
         sku: {
           colorInfo: {},
           sizeInfo: {}
-        }
+        },
+        addressInfo: {},
+        textValue: ""
       };
       this.$$refs = [];
     }
@@ -159,6 +162,16 @@ var Detail = (_temp2 = _class = function (_AtBase) {
           $url: 'getSku',
           data: skuId
         }
+      });
+    }
+    //textValue
+
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      console.log(e);
+      this.setState({
+        textValue: e.textValue
       });
     }
   }, {
@@ -261,19 +274,32 @@ var Detail = (_temp2 = _class = function (_AtBase) {
   }, {
     key: "addToCart",
     value: function addToCart() {
+      //还应该加上地址和电话等收货信息 
       var _state = this.state,
+          areasName = _state.areasName,
           showColorValue = _state.showColorValue,
           showSizeValue = _state.showSizeValue,
-          sku = _state.sku;
+          sku = _state.sku,
+          addressInfo = _state.addressInfo;
 
       console.log("addToCart", showColorValue, showSizeValue, sku);
       var newSku = [{
         skuId: sku.skuId,
         num: 1,
         color: showColorValue || sku.colorInfo.value,
-        size: showSizeValue || sku.sizeInfo.value
+        size: showSizeValue || sku.sizeInfo.value,
+        address: areasName,
+        phoneNumber: addressInfo.telNumber
       }];
-
+      if (!addressInfo.userName) {
+        _index2.default.showToast({
+          title: '请选择收货信息',
+          icon: 'error',
+          duration: 2000
+        });
+        return;
+      }
+      //对应的收货地址
       this.addCart(newSku);
     }
   }, {
@@ -307,6 +333,8 @@ var Detail = (_temp2 = _class = function (_AtBase) {
                     }
                   }
                 }).then(function (res) {
+                  console.log("add", res);
+
                   _index2.default.hideLoading();
                   _index2.default.showToast({
                     title: '添加购物车成功'
@@ -331,6 +359,29 @@ var Detail = (_temp2 = _class = function (_AtBase) {
 
       return addCart;
     }()
+  }, {
+    key: "selecteAddress",
+    value: function selecteAddress() {
+      console.log("selecteAddressClick");
+
+      var that = this;
+      _index2.default.chooseAddress({
+        success: function success(res) {
+          that.setState({
+            addressInfo: res,
+            areasName: res.provinceName + res.cityName + res.countyName + res.detailInfo
+          });
+          // console.log(res.userName)
+          // console.log(res.postalCode)
+          // console.log(res.provinceName)
+          // console.log(res.cityName)
+          // console.log(res.countyName)
+          // console.log(res.detailInfo)
+          // console.log(res.nationalCode)
+          // console.log(res.telNumber)
+        }
+      });
+    }
   }, {
     key: "_createData",
     value: function _createData() {

@@ -104,6 +104,24 @@ var _App = function (_BaseComponent) {
           traceUser: true // 是否要捕捉每个用户的访问记录。设置为true，用户可在管理端看到用户访问记录
         });
       }
+
+      _index2.default.getSetting().then(function (res) {
+        if (res.authSetting["scope.userInfo"]) {
+
+          return true;
+        } else {
+          throw new Error('没有授权');
+        }
+      }).then(function (res) {
+        return _index2.default.getUserInfo();
+      }).then(function (res) {
+        _index2.default.setStorage({
+          key: 'userInfo',
+          data: res.userInfo
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
   }, {
     key: "componentDidShow",

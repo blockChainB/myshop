@@ -48,7 +48,7 @@ var BottomBar = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BottomBar.__proto__ || Object.getPrototypeOf(BottomBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__8", "bottomClass", "isEditStatus", "checkDelAll", "hasDelCart", "checkAll", "checkCartNum", "showConfirm", "totalPrice", "delNum", "commoditys", "isLogin", "isSub"], _this.customComponents = ["Modal"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BottomBar.__proto__ || Object.getPrototypeOf(BottomBar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__9", "bottomClass", "isEditStatus", "checkDelAll", "hasDelCart", "checkAll", "checkCartNum", "showConfirm", "totalPrice", "delNum", "commoditys", "isLogin", "isSub"], _this.customComponents = ["Modal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(BottomBar, [{
@@ -209,7 +209,7 @@ var BottomBar = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__8 = (0, _index.genCompid)(__prefix + "$compid__8");
+      var $compid__9 = (0, _index.genCompid)(__prefix + "$compid__9");
 
       var _props2 = this.__props,
           isLogin = _props2.isLogin,
@@ -239,11 +239,11 @@ var BottomBar = (_temp2 = _class = function (_AtBase) {
         "contentText": anonymousState__temp2,
         "onCancelCallback": this.onHideDelPopup.bind(this),
         "onConfirmCallback": this.delCart.bind(this)
-      }, $compid__8);
+      }, $compid__9);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
-        $compid__8: $compid__8,
+        $compid__9: $compid__9,
         bottomClass: bottomClass,
         isEditStatus: isEditStatus,
         checkDelAll: checkDelAll,

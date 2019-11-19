@@ -40,10 +40,41 @@ var Profile = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profile.__proto__ || Object.getPrototypeOf(Profile)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "userInfo"], _this.handleLogin = function () {
-      if (!_this.props.userInfo.login) {
-        _index2.default.navigateTo({
-          url: '/pages/user-login/user-login'
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profile.__proto__ || Object.getPrototypeOf(Profile)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "bgImag", "userInfo", "icon", "leve"], _this.handleLogin = function () {
+      console.log('handleLogin');
+      if (!_this.props.userInfo.nickName) {
+        // Taro.navigateTo({
+        //   url: '/pages/user-login/user-login'
+        // })
+        _index2.default.login({
+          success: function success(res) {
+            if (res.code) {
+              //发起网络请求
+              // Taro.request({
+              //   url: 'https://test.com/onLogin',
+              //   data: {
+              //     code: res.code
+              //   }
+              // })
+              console.log(res.code, "code");
+              _index2.default.getUserInfo({
+                success: function success(resp) {
+                  var userInfo = resp.userInfo;
+                  // var nickName = userInfo.nickName
+                  // var avatarUrl = userInfo.avatarUrl
+                  // var gender = userInfo.gender //性别 0：未知、1：男、2：女
+                  // var province = userInfo.province
+                  // var city = userInfo.city
+                  // var country = userInfo.country
+                  _this.defaultProps = {
+                    userInfo: userInfo
+                  };
+                }
+              });
+            } else {
+              console.log('登录失败！' + res.errMsg);
+            }
+          }
         });
       }
     }, _this.getUid = function (uid) {
@@ -80,17 +111,18 @@ var Profile = (_temp2 = _class = function (_BaseComponent) {
 
       var userInfo = this.__props.userInfo;
 
-
-      var anonymousState__temp = "/pages/mine/assets/bg.png";
-      var anonymousState__temp2 = userInfo.login ? "/pages/mine/profile/assets/level-01.png" : null;
-      var anonymousState__temp3 = userInfo.login ? this.getUid(userInfo.uid) : null;
-      var anonymousState__temp4 = "/pages/mine/profile/assets/qr-code.png";
+      var bgImag = "/pages/mine/profile/assets/bg.png";
+      var leve = "/pages/mine/profile/assets/level-01.png";
+      var qrcode = "/pages/mine/profile/assets/qr-code.png";
+      var icon = "/pages/mine/profile/assets/default-avatar.png";
+      console.log("...", userInfo);
+      var anonymousState__temp = userInfo.nickName ? this.getUid(userInfo.uid) : null;
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        anonymousState__temp2: anonymousState__temp2,
-        anonymousState__temp3: anonymousState__temp3,
-        anonymousState__temp4: anonymousState__temp4,
-        userInfo: userInfo
+        bgImag: bgImag,
+        userInfo: userInfo,
+        icon: icon,
+        leve: leve
       });
       return this.__state;
     }

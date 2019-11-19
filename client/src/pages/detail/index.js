@@ -1,11 +1,12 @@
-import Taro from '@tarojs/taro'
+import Taro, { connectSocket } from '@tarojs/taro'
 import {
   View,
   Text,
   Image,
   ScrollView,
   Swiper,
-  SwiperItem
+  SwiperItem,
+  AtTextarea
 } from '@tarojs/components'
 import AtBase from '../../bases/base'
 
@@ -46,6 +47,7 @@ export default class Detail extends AtBase {
       skuId: '',
       areaId: '1-72-4137-0',
       areasName: '深圳市宝安区龙光世纪大厦',
+      ihoneNum:'119',
       showAddress: false,
       isIpx: false,
       showMore: false,
@@ -54,7 +56,9 @@ export default class Detail extends AtBase {
       sku: {
         colorInfo: {},
         sizeInfo: {}
-      }
+      },
+      addressInfo:{},
+      textValue:""
     }
   }
 
@@ -101,7 +105,14 @@ export default class Detail extends AtBase {
       }
     })
   }
+//textValue
+handleChange (e) {
+  console.log(e)
+  this.setState({
+    textValue:e.textValue
+  })
 
+}
   async getCartData () {
     const _openId = await getOpenId()
     return Taro.cloud.callFunction({
@@ -160,17 +171,28 @@ export default class Detail extends AtBase {
   }
 
   addToCart () {
-    const { showColorValue, showSizeValue, sku } = this.state
+    //还应该加上地址和电话等收货信息 
+    const { areasName,showColorValue, showSizeValue, sku ,addressInfo} = this.state
     console.log("addToCart",showColorValue, showSizeValue, sku);
     const newSku = [
       {
         skuId: sku.skuId,
         num: 1,
         color: showColorValue || sku.colorInfo.value,
-        size: showSizeValue || sku.sizeInfo.value
+        size: showSizeValue || sku.sizeInfo.value ,
+        address:areasName,
+        phoneNumber:addressInfo.telNumber
       }
     ]
-
+    if(!addressInfo.userName){
+      Taro.showToast({
+title: '请选择收货信息',
+icon: 'error',
+duration: 2000
+      })
+      return;
+    }
+    //对应的收货地址
     this.addCart(newSku)
   }
 
@@ -190,6 +212,8 @@ export default class Detail extends AtBase {
         }
       })
       .then(res => {
+        console.log("add",res);
+
         Taro.hideLoading()
         Taro.showToast({
           title: '添加购物车成功'
@@ -200,7 +224,27 @@ export default class Detail extends AtBase {
         })
       })
   }
-
+  selecteAddress (){
+    console.log("selecteAddressClick")
+ 
+    const that = this;
+    Taro.chooseAddress({
+      success: function (res) {
+        that.setState({
+          addressInfo:res,
+          areasName:res.provinceName+res.cityName+res.countyName+res.detailInfo
+        })
+      // console.log(res.userName)
+      // console.log(res.postalCode)
+      // console.log(res.provinceName)
+      // console.log(res.cityName)
+      // console.log(res.countyName)
+      // console.log(res.detailInfo)
+      // console.log(res.nationalCode)
+      // console.log(res.telNumber)
+      }
+      })
+  }
   render () {
     const {
       isFirst,
@@ -430,10 +474,10 @@ export default class Detail extends AtBase {
                 <View className='dlayer_summary'>
                   <View
                     className='summary_row summary_address'
-                    onClick={this.selecteAddress}
+                    onClick={this.selecteAddress.bind(this)}
                   >
                     <View className='summary_row_in flex_row'>
-                      <Text className='summary_row_tit'>送至：</Text>
+                      <Text className='summary_row_tit'>点击修改地址：</Text>
                       <Text className='summary_row_cont'>
                         {this.state.areasName}
                       </Text>
@@ -441,7 +485,22 @@ export default class Detail extends AtBase {
                     <View className='summary_row_in flex_row paddingTop22'>
                       <Text className='summary_row_tit'>运费：</Text>
                       <Text className='summary_row_cont'>&yen;14</Text>
+                      
+
+
+
+
                     </View>
+                    {/* //备注 */}
+                    {/* <View className='summary_row_in flex_row paddingTop22'> 
+                    <Text className='summary_row_tit'>备注：</Text>
+                   
+
+                    </View> */}
+
+
+
+
                   </View>
                   <View className='placeholder'></View>
                 </View>

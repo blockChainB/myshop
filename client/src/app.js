@@ -85,6 +85,29 @@ class App extends Component {
         traceUser: true // 是否要捕捉每个用户的访问记录。设置为true，用户可在管理端看到用户访问记录
       })
     }
+
+    Taro.getSetting()
+      .then(res=>{
+        if(res.authSetting["scope.userInfo"]){
+
+          return true;
+        }else {
+          throw new Error('没有授权')
+        }
+      })
+      .then(res=>{
+        return Taro.getUserInfo();
+      })
+      .then(res=>{
+        Taro.setStorage({
+          key: 'userInfo',
+          data: res.userInfo
+        })
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+
   }
 
   componentDidShow () {}

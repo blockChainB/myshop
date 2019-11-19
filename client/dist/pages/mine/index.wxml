@@ -1,11 +1,10 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="user">
         <scroll-view scroll-y="{{true}}" class="user__wrap">
-            <profile compid="{{$compid__9}}"></profile>
+            <profile compid="{{$compid__6}}"></profile>
             <menu></menu>
-            <block wx:if="{{userInfo.login}}">
-                <view class="user__logout" bindtap="handleLogin"><text class="user__logout-txt">切换账号</text>
-                </view>
+            <block wx:if="{{userInfo.nickName}}">
+                <view class="user__logout" bindtap="handleLogin"></view>
             </block>
             <view class="user__empty"></view>
         </scroll-view>
