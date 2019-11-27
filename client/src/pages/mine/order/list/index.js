@@ -99,7 +99,7 @@ export default class OrderList extends AtBase {
   }
 
   gotoHome () {
-    this.jumpUrl(`/pages/index/index`)
+    this.jumpUrl(`/pages/shop/index`)
   }
 
   render () {

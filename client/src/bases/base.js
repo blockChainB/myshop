@@ -11,6 +11,7 @@ export default class AtBase extends Component {
       'pages/shop/index',
       'pages/cart/index',
       'pages/order/list/index',
+      'pages/news/index',
     ]
 
     if (url && typeof url === 'string') {

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "webview": "../../../npm/@tarojs/components/dist/@tarojs/taro-h5"
+  },
+  "navigationBarTitleText": ""
+}

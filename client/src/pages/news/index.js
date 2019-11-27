@@ -5,7 +5,8 @@ import {
   Image,
   ScrollView,
   Swiper,
-  SwiperItem
+  SwiperItem,
+  WebView,
 } from '@tarojs/components'
 import AtBase from '../../bases/base'
 
@@ -24,7 +25,9 @@ export default class Shop extends AtBase {
       params: {},
       showMore: false,
       banner: [],
-      floors: []
+      floors: [],
+      pageNumber:1,
+      data:[]
     }
   }
 
@@ -45,35 +48,89 @@ export default class Shop extends AtBase {
     await this.getShopData(venderId)
    
   }
-
+  //上拉刷新 
+  async requestData () {
+    const number = this.state.pageNumber
+    // if(!this.setState.hasMore){
+    //   Taro.showToast({
+    //     title: '没有数据了',
+    //     icon: 'error',
+    //     duration: 2000
+    //           })
+    //           return;
+    // }
+    console.log("pageNumber",number + 1);
+    this.setState({
+      pageNumber: number + 1
+    })
+    this.getShopData()
+  }
 
   async getShopData (venderId) {
-    const res = await Taro.cloud.callFunction({
-      name: 'news',
-      data: {
-        $url: 'getNews',
-       
-      }
+    Taro.setNavigationBarTitle({
+      // title: afterData.title
+      title: "ACQUIT-资讯"
     })
-    // 成功调用
+    // const res = await Taro.cloud.callFunction({
+    //   name: 'news',
+    //   data: {
+    //     $url: 'getNews',
+       
+    //   }
+    // })
+    // // 成功调用
+    // if (this.successCode(res)) {
+    //   const afterData = this.getDataContent(res)
+    //   console.log("getNews",afterData);
+    //   const arryData = afterData.data;
+    //   this.setState({
+    //     params: {
+    //       venderId
+    //     },
+    //     data:arryData,
+    //     showMore: false,
+    //     isFirst: false,
+    //     ...afterData
+    //   })
+    //   Taro.setNavigationBarTitle({
+    //     // title: afterData.title
+    //     title: "ACQUIT-资讯"
+    //   })
+    //   console.log('.....data',this.state.data);
+    //   // Taro.redirectTo(`/pages/detail/index?skuId=1`)
+
+    // } else {
+    //   // TODO: 异常处理
+    //   console.log('.....')
+    // }
+
+  const that = this;
+
+  const res= await Taro.cloud.callFunction({
+        name:"fenyeRequest",
+        data:{
+          dbName:"News",
+          pageIndex:this.pageNumber,
+          pageSize:10,
+          // isGetNews:true
+        }
+
+    })
     if (this.successCode(res)) {
       const afterData = this.getDataContent(res)
-      console.log("getNews",afterData);
-      const arryData = afterData.data;
-      this.setState({
+      console.log("getNews",res.hasMore);
+      // const arryData = afterData;
+      that.setState({
         params: {
           venderId
         },
-        data:arryData,
-        showMore: false,
+        data:afterData,
+        hasMore: res.hasMore,
         isFirst: false,
-        ...afterData
+        // ...afterData
       })
-      Taro.setNavigationBarTitle({
-        // title: afterData.title
-        title: "ACQUIT-资讯"
-      })
-      console.log('.....data',this.state.data);
+     
+      console.log('.....data',that.state.data);
       // Taro.redirectTo(`/pages/detail/index?skuId=1`)
 
     } else {
@@ -106,8 +163,10 @@ export default class Shop extends AtBase {
     console.log(page,"page")
   }
 
-  onGotoDetail (skuId) {
-    this.jumpUrl(`/pages/detail/index?skuId=${skuId}`)
+  onGotoDetail (url) {
+    console.log(url,"url");
+    this.jumpUrl(`/pages/news/detail/index?url=${url}`)
+ 
   }
 
   render () {
@@ -170,15 +229,15 @@ export default class Shop extends AtBase {
             </View>
           </View>
            */}
-          <ScrollView className='goods' scrollY>
+          <ScrollView className='goods' scrollY   onScrollToLower={this.requestData.bind(this)}>
 
                    {data.map((item, floorIndex) => {
-                      // console.log(floorIndex,item);
+                      console.log("goods",floorIndex,item);
                       return (
                         <View
                           key={floorIndex}
                           className='goods_item'
-                          onClick={this.onGotoDetail.bind(this, item.url)}
+                          onClick={this.onGotoDetail.bind(this, item.url+"&"+"title="+item.title)}
                         >
                           <View className='goods_img'>
                             <Image
@@ -191,7 +250,7 @@ export default class Shop extends AtBase {
                           <View className='goods_info'>
                             <Text
                               className='goods_name'
-                              onClick={this.onGotoDetail.bind(this, item.url)}
+                              // onClick={this.onGotoDetail.bind(this, item.url)}
                             >
                               {"标题: " + item.title}
                             </Text>

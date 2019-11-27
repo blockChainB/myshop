@@ -178,7 +178,7 @@ var OrderList = (_temp2 = _class = function (_AtBase) {
   }, {
     key: "gotoHome",
     value: function gotoHome() {
-      this.jumpUrl("/pages/index/index");
+      this.jumpUrl("/pages/shop/index");
     }
   }, {
     key: "_createData",

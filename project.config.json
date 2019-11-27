@@ -1,19 +1,43 @@
 {
-	"miniprogramRoot": "client/dist/",
-	"cloudfunctionRoot": "cloud/functions/",
-	"projectname": "eshop",
-	"description": "电商小程序",
-	"appid": "wx7d6fadf2ce592265",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
 		"postcss": false,
-		"minified": false
+		"minified": false,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
+	"libVersion": "2.9.3",
+	"appid": "wx06d3e82ec724ae27",
+	"projectname": "eshop",
+	"miniprogramRoot": "client/dist/",
+	"cloudfunctionRoot": "cloud/functions/",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"watchOptions": {
+		"ignore": []
+	},
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -30,8 +54,12 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,

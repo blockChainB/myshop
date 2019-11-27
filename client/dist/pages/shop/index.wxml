@@ -2,7 +2,7 @@
     <block wx:if="{{!isFirst}}">
         <view class="shop_nocate" style="{{anonymousState__temp}}">
             <view class="topbar">
-                <search-into compid="{{$compid__0}}"></search-into>
+                <search-into compid="{{$compid__19}}"></search-into>
                 <view class="topbar_search_action">
                     <view class="topbar_search_more" bindtap="toggleShowMore" data-e-tap-so="this">
                         <image class="topbar_search_icon topbar_search_icon_more" src="{{SEARCH_BAR_MORE_IMAGE}}"></image>
@@ -23,20 +23,14 @@
             </view>
             <scroll-view scroll-y="{{true}}" class="shop_main-scroll">
                 <swiper class="shop_main_swiper" indicator-dots="{{true}}" indicator-color="#ddd" indicator-active-color="#232323" current="{{0}}" interval="3000" duration="300" circular="{{true}}" autoplay="{{true}}">
-                    <swiper-item wx:key="index" wx:for="{{banner}}" wx:for-item="item" wx:for-index="index">
-                        <image src="{{item}}" mode="widthFix" class="shop_main_swiper_item_image"></image>
+                    <swiper-item wx:key="index" class="banner_swiper" bindtap="touchBanner" wx:for="{{banner}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{index}}">
+                        <image src="{{item}}" mode="aspectFill" class="shop_main_swiper_item_image"></image>
                     </swiper-item>
                 </swiper>
                 <view class="shop_floor">
+                    <view class="que-tag"><text class="tag">精选</text><text class="tag">热卖</text><text class="tag">预售中</text>
+                    </view>
                     <view wx:key="index" class="shop_floor_item" wx:for="{{floors}}" wx:for-item="floor" wx:for-index="index">
-                        <view class="shop_floor_title">
-                            <image class="shop_floor_title_img" src="{{'http:' + floor.title}}" mode="widthFix"></image>
-                        </view>
-                        <block wx:if="{{floor.desc}}">
-                            <view class="shop_floor_desc">
-                                <image class="shop_floor_desc_img" src="{{floor.desc}}" mode="widthFix"></image>
-                            </view>
-                        </block>
                         <view wx:key="floorIndex" class="goods_item" bindtap="onGotoDetail" wx:for="{{floor.commodities}}" wx:for-item="item" wx:for-index="floorIndex" data-e-tap-so="this" data-e-tap-a-a="{{item.skuId}}">
                             <view class="goods_img">
                                 <image class="goods_img_image" src="{{item.images[0]}}" mode="widthFix" lazy-load="{{true}}"></image>
@@ -47,6 +41,9 @@
                     </view>
                 </view>
             </scroll-view>
+            <view class="user__activity" bindtap="getYHQuan" data-e-tap-so="this">
+                <activity></activity><text class="text">{{getYHMoney}}元优惠券</text>
+            </view>
         </view>
     </block>
 </block>

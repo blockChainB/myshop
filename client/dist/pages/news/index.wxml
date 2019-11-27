@@ -1,12 +1,12 @@
 <block wx:if="{{$taroCompReady}}">
     <block wx:if="{{!isFirst}}">
         <view class="shop_nocate" style="{{anonymousState__temp}}">
-            <scroll-view class="goods" scroll-y="{{true}}">
-                <view wx:key="floorIndex" class="goods_item" bindtap="onGotoDetail" wx:for="{{data}}" wx:for-item="item" wx:for-index="floorIndex" data-e-tap-so="this" data-e-tap-a-a="{{item.url}}">
+            <scroll-view class="goods" scroll-y="{{true}}" bindscrolltolower="requestData" data-e-scrolltolower-so="this">
+                <view wx:key="floorIndex" class="goods_item" bindtap="onGotoDetail" wx:for="{{loopArray4}}" wx:for-item="item" wx:for-index="floorIndex" data-e-tap-so="this" data-e-tap-a-a="{{item.$original.url + '&' + 'title=' + item.$original.title}}">
                     <view class="goods_img">
-                        <image class="goods_img_image" src="{{item.img}}" mode="aspectFill" lazy-load="{{true}}"></image>
+                        <image class="goods_img_image" src="{{item.$original.img}}" mode="aspectFill" lazy-load="{{true}}"></image>
                     </view>
-                    <view class="goods_info"><text class="goods_name" bindtap="onGotoDetail" data-e-tap-so="this" data-e-tap-a-a="{{item.url}}">{{"标题: " + item.title}}</text><text class="goods_price goods_price_new">{{"简介: " + item.des}}</text>
+                    <view class="goods_info"><text class="goods_name">{{"标题: " + item.$original.title}}</text><text class="goods_price goods_price_new">{{"简介: " + item.$original.des}}</text>
                     </view>
                 </view>
             </scroll-view>

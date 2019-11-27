@@ -9,16 +9,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _class, _temp2;
-// import { connect } from '@tarojs/redux'
-// import * as actions from '@actions/user'
-// import { dispatchCartNum } from '@actions/cart'
-// import { getWindowHeight } from '@utils/style'
 
-var _index = require("../../npm/@tarojs/taro-weapp/index.js");
+var _index = require("../../../npm/@tarojs/taro-weapp/index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
-var _base = require("../../bases/base.js");
+var _base = require("../../../bases/base.js");
 
 var _base2 = _interopRequireDefault(_base);
 
@@ -30,56 +26,55 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// @connect(state => state.user, { ...actions, dispatchCartNum })
+var detail = (_temp2 = _class = function (_AtBase) {
+  _inherits(detail, _AtBase);
 
-var mine = (_temp2 = _class = function (_AtBase) {
-  _inherits(mine, _AtBase);
-
-  function mine() {
+  function detail() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, mine);
+    _classCallCheck(this, detail);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = mine.__proto__ || Object.getPrototypeOf(mine)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__7", "userInfo"], _this.config = {
-      navigationBarTitleText: '个人中心'
-    }, _this.handleLogin = function () {
-      console.log('handleLogin');
-      if (!_this.state.userInfo.nickName) {}
-    }, _this.customComponents = ["Profile", "Menu", "Activity"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detail.__proto__ || Object.getPrototypeOf(detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__6", "urlString", "params", "showMore", "banner", "floors"], _this.config = {
+      navigationBarTitleText: ''
+    }, _this.customComponents = ["Webview"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(mine, [{
+  _createClass(detail, [{
     key: "_constructor",
     value: function _constructor() {
-      _get(mine.prototype.__proto__ || Object.getPrototypeOf(mine.prototype), "_constructor", this).apply(this, arguments);
+      _get(detail.prototype.__proto__ || Object.getPrototypeOf(detail.prototype), "_constructor", this).apply(this, arguments);
       this.state = {
-        userInfo: {}
+        urlString: "",
+        params: {},
+        showMore: false,
+        banner: [],
+        floors: []
       };
       this.$$refs = [];
     }
   }, {
-    key: "componentDidShow",
-    value: function componentDidShow() {
-      try {
-        var value = _index2.default.getStorageSync('userInfo');
-        if (value) {
-          console.log("value", value);
-
-          this.setState({
-            userInfo: value
-          });
-          //  this.render();
-        }
-      } catch (e) {
-        // Do something when catch error
-      }
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var params = (this.$router || this.context.$router).params;
+      var url = params.url;
+      var title = params.title;
+      console.log("url", url);
+      _index2.default.setNavigationBarTitle({
+        title: title
+      });
+      this.setState({
+        urlString: url
+      });
     }
+  }, {
+    key: "handleMessage",
+    value: function handleMessage() {}
   }, {
     key: "_createData",
     value: function _createData() {
@@ -88,23 +83,21 @@ var mine = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__7 = (0, _index.genCompid)(__prefix + "$compid__7");
-
-      var userInfo = this.__state.userInfo;
-
-      console.log("userInfo", userInfo);
+      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
       _index.propsManager.set({
-        "userInfo": userInfo
-      }, $compid__7);
+        "className": "user-menu",
+        "src": this.__state.urlString,
+        "onMessage": this.handleMessage
+      }, $compid__6);
       Object.assign(this.__state, {
-        $compid__7: $compid__7
+        $compid__6: $compid__6
       });
       return this.__state;
     }
   }]);
 
-  return mine;
-}(_base2.default), _class.$$events = ["handleLogin"], _class.$$componentPath = "pages/mine/index", _temp2);
-exports.default = mine;
+  return detail;
+}(_base2.default), _class.$$events = [], _class.$$componentPath = "pages/news/detail/index", _temp2);
+exports.default = detail;
 
-Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(mine, true));
+Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(detail, true));

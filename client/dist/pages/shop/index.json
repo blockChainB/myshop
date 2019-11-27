@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "search-into": "../../components/search-into/index"
+    "search-into": "../../components/search-into/index",
+    "activity": "../mine/activity/index"
   },
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "",
+  "backgroundTextStyle": "dark"
 }

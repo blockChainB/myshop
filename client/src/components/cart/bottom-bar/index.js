@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { View, Text, Image, Label } from '@tarojs/components'
+import { View, Text, Image, Label} from '@tarojs/components'
 import classnames from 'classnames'
 import AtBase from '../../../bases/base'
 
@@ -203,7 +203,7 @@ export default class BottomBar extends AtBase {
                   ? 'bottom_bar_btn bottom_bar_btn_none'
                   : 'bottom_bar_btn'
               }
-              onClick={this.gotoBalance.bind(this)}
+              // onClick={this.gotoBalance.bind(this)}
             >
               <Text
                 onClick={this.gotoBalance.bind(this)}

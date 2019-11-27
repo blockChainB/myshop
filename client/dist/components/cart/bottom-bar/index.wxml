@@ -37,7 +37,7 @@
                         <view class="bottom_bar_total_text"><text class="bottom_bar_total_text">共计：</text><text class="bottom_bar_total_small">￥</text><text class="bottom_bar_total_big">{{totalPrice}}</text>
                         </view><text class="bottom_bar_total_desc">不含运费</text>
                     </view>
-                    <view class="{{checkCartNum === 0 ? 'bottom_bar_btn bottom_bar_btn_none' : 'bottom_bar_btn'}}" bindtap="gotoBalance" data-e-tap-so="this"><text bindtap="gotoBalance" class="bottom_bar_text" data-e-tap-so="this">去结算({{checkCartNum}})</text>
+                    <view class="{{checkCartNum === 0 ? 'bottom_bar_btn bottom_bar_btn_none' : 'bottom_bar_btn'}}"><text bindtap="gotoBalance" class="bottom_bar_text" data-e-tap-so="this">去结算({{checkCartNum}})</text>
                     </view>
                 </view>
             </block>

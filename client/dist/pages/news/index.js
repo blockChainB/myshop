@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SEARCH_BAR_MORE_IMAGE = undefined;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -49,7 +47,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "isFirst", "data", "params", "showMore", "banner", "floors"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray4", "isFirst", "data", "params", "showMore", "banner", "floors", "pageNumber"], _this.config = {
       navigationBarTitleText: ''
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -63,7 +61,9 @@ var Shop = (_temp2 = _class = function (_AtBase) {
         params: {},
         showMore: false,
         banner: [],
-        floors: []
+        floors: [],
+        pageNumber: 1,
+        data: []
       };
       this.$$refs = [];
     }
@@ -104,52 +104,32 @@ var Shop = (_temp2 = _class = function (_AtBase) {
 
       return componentWillMount;
     }()
+    //上拉刷新 
+
   }, {
-    key: "getShopData",
+    key: "requestData",
     value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(venderId) {
-        var res, afterData, arryData;
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var number;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return _index2.default.cloud.callFunction({
-                  name: 'news',
-                  data: {
-                    $url: 'getNews'
+                number = this.state.pageNumber;
+                // if(!this.setState.hasMore){
+                //   Taro.showToast({
+                //     title: '没有数据了',
+                //     icon: 'error',
+                //     duration: 2000
+                //           })
+                //           return;
+                // }
 
-                  }
+                console.log("pageNumber", number + 1);
+                this.setState({
+                  pageNumber: number + 1
                 });
-
-              case 2:
-                res = _context2.sent;
-
-                // 成功调用
-                if (this.successCode(res)) {
-                  afterData = this.getDataContent(res);
-
-                  console.log("getNews", afterData);
-                  arryData = afterData.data;
-
-                  this.setState(_extends({
-                    params: {
-                      venderId: venderId
-                    },
-                    data: arryData,
-                    showMore: false,
-                    isFirst: false
-                  }, afterData));
-                  _index2.default.setNavigationBarTitle({
-                    // title: afterData.title
-                    title: "ACQUIT-资讯"
-                  });
-                  console.log('.....data', this.state.data);
-                  // Taro.redirectTo(`/pages/detail/index?skuId=1`)
-                } else {
-                  // TODO: 异常处理
-                  console.log('.....');
-                }
+                this.getShopData();
 
               case 4:
               case "end":
@@ -159,8 +139,106 @@ var Shop = (_temp2 = _class = function (_AtBase) {
         }, _callee2, this);
       }));
 
-      function getShopData(_x) {
+      function requestData() {
         return _ref3.apply(this, arguments);
+      }
+
+      return requestData;
+    }()
+  }, {
+    key: "getShopData",
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(venderId) {
+        var that, res, afterData;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _index2.default.setNavigationBarTitle({
+                  // title: afterData.title
+                  title: "ACQUIT-资讯"
+                });
+                // const res = await Taro.cloud.callFunction({
+                //   name: 'news',
+                //   data: {
+                //     $url: 'getNews',
+
+                //   }
+                // })
+                // // 成功调用
+                // if (this.successCode(res)) {
+                //   const afterData = this.getDataContent(res)
+                //   console.log("getNews",afterData);
+                //   const arryData = afterData.data;
+                //   this.setState({
+                //     params: {
+                //       venderId
+                //     },
+                //     data:arryData,
+                //     showMore: false,
+                //     isFirst: false,
+                //     ...afterData
+                //   })
+                //   Taro.setNavigationBarTitle({
+                //     // title: afterData.title
+                //     title: "ACQUIT-资讯"
+                //   })
+                //   console.log('.....data',this.state.data);
+                //   // Taro.redirectTo(`/pages/detail/index?skuId=1`)
+
+                // } else {
+                //   // TODO: 异常处理
+                //   console.log('.....')
+                // }
+
+                that = this;
+                _context3.next = 4;
+                return _index2.default.cloud.callFunction({
+                  name: "fenyeRequest",
+                  data: {
+                    dbName: "News",
+                    pageIndex: this.pageNumber,
+                    pageSize: 10
+                    // isGetNews:true
+                  }
+
+                });
+
+              case 4:
+                res = _context3.sent;
+
+                if (this.successCode(res)) {
+                  afterData = this.getDataContent(res);
+
+                  console.log("getNews", res.hasMore);
+                  // const arryData = afterData;
+                  that.setState({
+                    params: {
+                      venderId: venderId
+                    },
+                    data: afterData,
+                    hasMore: res.hasMore,
+                    isFirst: false
+                    // ...afterData
+                  });
+
+                  console.log('.....data', that.state.data);
+                  // Taro.redirectTo(`/pages/detail/index?skuId=1`)
+                } else {
+                  // TODO: 异常处理
+                  console.log('.....');
+                }
+
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function getShopData(_x) {
+        return _ref4.apply(this, arguments);
       }
 
       return getShopData;
@@ -201,8 +279,9 @@ var Shop = (_temp2 = _class = function (_AtBase) {
     }
   }, {
     key: "onGotoDetail",
-    value: function onGotoDetail(skuId) {
-      this.jumpUrl("/pages/detail/index?skuId=" + skuId);
+    value: function onGotoDetail(url) {
+      console.log(url, "url");
+      this.jumpUrl("/pages/news/detail/index?url=" + url);
     }
   }, {
     key: "_createData",
@@ -224,16 +303,26 @@ var Shop = (_temp2 = _class = function (_AtBase) {
 
       var isIphonex = (0, _index3.getSystemInfo)().isIpx;
       var anonymousState__temp = !isFirst ? (0, _index.internal_inline_style)(isIphonex ? 'padding-bottom: 164rpx;' : '') : null;
+      var loopArray4 = !isFirst ? data.map(function (item, floorIndex) {
+        item = {
+          $original: (0, _index.internal_get_original)(item)
+        };
+
+        console.log("goods", floorIndex, item.$original);
+        return {
+          $original: item.$original
+        };
+      }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        data: data
+        loopArray4: loopArray4
       });
       return this.__state;
     }
   }]);
 
   return Shop;
-}(_base2.default), _class.$$events = ["onGotoDetail"], _class.$$componentPath = "pages/news/index", _temp2);
+}(_base2.default), _class.$$events = ["requestData", "onGotoDetail"], _class.$$componentPath = "pages/news/index", _temp2);
 exports.default = Shop;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Shop, true));

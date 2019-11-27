@@ -44,7 +44,7 @@ var _App = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/shop/index', 'pages/index/index', 'pages/cart/index', "pages/mine/order/list/index", 'pages/news/index', 'pages/mine/index', 'pages/detail/index', 'pages/mine/order/detail/index'],
+      pages: ['pages/shop/index', 'pages/index/index', 'pages/cart/index', "pages/mine/order/list/index", 'pages/news/index', 'pages/news/detail/index', 'pages/mine/index', 'pages/detail/index', 'pages/mine/order/detail/index'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#ffffff',
@@ -100,7 +100,7 @@ var _App = function (_BaseComponent) {
     value: function componentDidMount() {
       {
         _index2.default.cloud.init({
-          env: 'holo-env-30guo', // 获取环境ID：前往 云开发控制台-设置-环境ID holo-env-30guo
+          env: 'debug-h2ld5', // 获取环境ID：前往 云开发控制台-设置-环境ID debug-h2ld5
           traceUser: true // 是否要捕捉每个用户的访问记录。设置为true，用户可在管理端看到用户访问记录
         });
       }

@@ -5,6 +5,7 @@
     "pages/cart/index",
     "pages/mine/order/list/index",
     "pages/news/index",
+    "pages/news/detail/index",
     "pages/mine/index",
     "pages/detail/index",
     "pages/mine/order/detail/index"
@@ -52,5 +53,6 @@
     "connectSocket": 10000,
     "uploadFile": 10000,
     "downloadFile": 10000
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
