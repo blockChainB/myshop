@@ -46,12 +46,12 @@ var mine = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = mine.__proto__ || Object.getPrototypeOf(mine)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__7", "userInfo"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = mine.__proto__ || Object.getPrototypeOf(mine)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__5", "userInfo"], _this.config = {
       navigationBarTitleText: '个人中心'
     }, _this.handleLogin = function () {
       console.log('handleLogin');
       if (!_this.state.userInfo.nickName) {}
-    }, _this.customComponents = ["Profile", "Menu", "Activity"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.customComponents = ["Profile", "Menu"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(mine, [{
@@ -79,6 +79,14 @@ var mine = (_temp2 = _class = function (_AtBase) {
       } catch (e) {
         // Do something when catch error
       }
+      _index2.default.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#000000',
+        animation: {
+          duration: 400,
+          timingFunc: 'easeIn'
+        }
+      });
     }
   }, {
     key: "_createData",
@@ -88,23 +96,31 @@ var mine = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__7 = (0, _index.genCompid)(__prefix + "$compid__7");
+      var $compid__5 = (0, _index.genCompid)(__prefix + "$compid__5");
 
       var userInfo = this.__state.userInfo;
 
       console.log("userInfo", userInfo);
       _index.propsManager.set({
         "userInfo": userInfo
-      }, $compid__7);
+      }, $compid__5);
       Object.assign(this.__state, {
-        $compid__7: $compid__7
+        $compid__5: $compid__5
       });
       return this.__state;
     }
   }]);
 
   return mine;
-}(_base2.default), _class.$$events = ["handleLogin"], _class.$$componentPath = "pages/mine/index", _temp2);
+}(_base2.default), _class.$$events = [], _class.$$componentPath = "pages/mine/index", _temp2);
+
+// {userInfo.nickName &&
+//   // <View className='user__logout' onClick={this.handleLogin}>
+//   //   {/* <Text className='user__logout-txt'>切换账号</Text> */}
+//   // </View>
+// }
+
+
 exports.default = mine;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(mine, true));

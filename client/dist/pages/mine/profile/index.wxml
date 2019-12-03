@@ -1,6 +1,5 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="user-profile">
-        <image class="user-profile__bg" src="{{bgImag}}" mode="widthFix"></image>
         <view class="user-profile__wrap">
             <view class="user-profile__avatar">
                 <image class="user-profile__avatar-img" src="{{userInfo.nickName ? userInfo.avatarUrl : icon}}" bindtap="handleLogin"></image>

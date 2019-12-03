@@ -47,7 +47,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray4", "isFirst", "data", "params", "showMore", "banner", "floors", "pageNumber"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Shop.__proto__ || Object.getPrototypeOf(Shop)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray2", "isFirst", "data", "params", "showMore", "banner", "floors", "pageNumber"], _this.config = {
       navigationBarTitleText: ''
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -91,6 +91,16 @@ var Shop = (_temp2 = _class = function (_AtBase) {
                 return this.getShopData(venderId);
 
               case 6:
+                _index2.default.setNavigationBarColor({
+                  frontColor: '#ffffff',
+                  backgroundColor: '#000000',
+                  animation: {
+                    duration: 400,
+                    timingFunc: 'easeIn'
+                  }
+                });
+
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -282,6 +292,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
     value: function onGotoDetail(url) {
       console.log(url, "url");
       this.jumpUrl("/pages/news/detail/index?url=" + url);
+      _index2.default.setStorageSync('newsURL', url);
     }
   }, {
     key: "_createData",
@@ -303,7 +314,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
 
       var isIphonex = (0, _index3.getSystemInfo)().isIpx;
       var anonymousState__temp = !isFirst ? (0, _index.internal_inline_style)(isIphonex ? 'padding-bottom: 164rpx;' : '') : null;
-      var loopArray4 = !isFirst ? data.map(function (item, floorIndex) {
+      var loopArray2 = !isFirst ? data.map(function (item, floorIndex) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
@@ -315,7 +326,7 @@ var Shop = (_temp2 = _class = function (_AtBase) {
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray4: loopArray4
+        loopArray2: loopArray2
       });
       return this.__state;
     }

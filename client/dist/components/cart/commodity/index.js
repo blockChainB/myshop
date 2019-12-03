@@ -44,7 +44,7 @@ var Commondity = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Commondity.__proto__ || Object.getPrototypeOf(Commondity)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray10", "$compid__8", "commoditys", "isEditStatus", "changeNumMap", "hasCommodity", "showConfirm", "isNeedFixedBar", "isFixedBar", "isFetching", "editSkuData"], _this.customComponents = ["Modal"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Commondity.__proto__ || Object.getPrototypeOf(Commondity)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray8", "$compid__6", "commoditys", "isEditStatus", "changeNumMap", "hasCommodity", "showConfirm", "isNeedFixedBar", "isFixedBar", "isFetching", "editSkuData"], _this.customComponents = ["Modal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Commondity, [{
@@ -223,7 +223,7 @@ var Commondity = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__8 = (0, _index.genCompid)(__prefix + "$compid__8");
+      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
 
       var _props = this.__props,
           isFixedBar = _props.isFixedBar,
@@ -236,7 +236,7 @@ var Commondity = (_temp2 = _class = function (_AtBase) {
       var hasCommodity = commoditys.length !== 0;
 
       var isNeedFixedBar = isFixedBar && hasCommodity;
-      var loopArray10 = commoditys.map(function (commodity, _anonIdx3) {
+      var loopArray8 = commoditys.map(function (commodity, _anonIdx3) {
         commodity = {
           $original: (0, _index.internal_get_original)(commodity)
         };
@@ -251,10 +251,10 @@ var Commondity = (_temp2 = _class = function (_AtBase) {
         "contentText": "\u662F\u5426\u5220\u9664\u8BE5\u5546\u54C1",
         "onCancelCallback": this.hideDelPopup.bind(this),
         "onConfirmCallback": this.delCart.bind(this)
-      }, $compid__8);
+      }, $compid__6);
       Object.assign(this.__state, {
-        loopArray10: loopArray10,
-        $compid__8: $compid__8,
+        loopArray8: loopArray8,
+        $compid__6: $compid__6,
         commoditys: commoditys,
         isEditStatus: isEditStatus,
         hasCommodity: hasCommodity,

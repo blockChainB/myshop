@@ -1,15 +1,9 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="user">
         <scroll-view scroll-y="{{true}}" class="user__wrap">
-            <profile compid="{{$compid__7}}"></profile>
+            <profile compid="{{$compid__5}}"></profile>
             <menu></menu>
-            <block wx:if="{{userInfo.nickName}}">
-                <view class="user__logout" bindtap="handleLogin"></view>
-            </block>
-            <view class="user__empty"></view>
         </scroll-view>
-        <view class="user__activity">
-            <activity></activity>
-        </view>
+        <view class="user__activity"></view>
     </view>
 </block>

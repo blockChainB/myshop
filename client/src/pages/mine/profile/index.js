@@ -73,11 +73,11 @@ export default class Profile extends Component {
     return (
       <View className='user-profile'>
         {/* // NOTE 背景图片：Image 标签 + position absolute 实现 */}
-        <Image
+        {/* <View
           className='user-profile__bg'
-          src={bgImag}
-          mode='widthFix'
-        />
+          // src={bgImag}
+          // mode='widthFix'
+        /> */}
 
         <View className='user-profile__wrap'>
           <View className='user-profile__avatar'>

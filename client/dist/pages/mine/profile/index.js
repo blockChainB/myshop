@@ -40,7 +40,7 @@ var Profile = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profile.__proto__ || Object.getPrototypeOf(Profile)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "bgImag", "userInfo", "icon", "leve"], _this.handleLogin = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profile.__proto__ || Object.getPrototypeOf(Profile)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "userInfo", "icon", "leve"], _this.handleLogin = function () {
       console.log('handleLogin');
       if (!_this.props.userInfo.nickName) {
         // Taro.navigateTo({
@@ -119,7 +119,6 @@ var Profile = (_temp2 = _class = function (_BaseComponent) {
       var anonymousState__temp = userInfo.nickName ? this.getUid(userInfo.uid) : null;
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        bgImag: bgImag,
         userInfo: userInfo,
         icon: icon,
         leve: leve

@@ -9,7 +9,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100rpx; }
+  height: 100rpx;
+  background-color: #444; }
 
 .user-profile__wrap {
   position: relative;

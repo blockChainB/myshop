@@ -40,9 +40,10 @@ var detail = (_temp2 = _class = function (_AtBase) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detail.__proto__ || Object.getPrototypeOf(detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__6", "urlString", "params", "showMore", "banner", "floors"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detail.__proto__ || Object.getPrototypeOf(detail)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["urlString", "params", "showMore", "banner", "floors"], _this.config = {
       navigationBarTitleText: ''
-    }, _this.customComponents = ["Webview"], _temp), _possibleConstructorReturn(_this, _ret);
+
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(detail, [{
@@ -64,13 +65,18 @@ var detail = (_temp2 = _class = function (_AtBase) {
       var params = (this.$router || this.context.$router).params;
       var url = params.url;
       var title = params.title;
-      console.log("url", url);
+      console.log("url", url, title);
+
       _index2.default.setNavigationBarTitle({
-        title: title
+        title: 'ACQUIT-资讯'
       });
-      this.setState({
-        urlString: url
-      });
+      // Taro.setStorageSync('newsURL',url)
+      var newsURL = _index2.default.getStorageSync('newsURL');
+      if (newsURL) {
+        this.setState({
+          urlString: newsURL
+        });
+      }
     }
   }, {
     key: "handleMessage",
@@ -83,21 +89,13 @@ var detail = (_temp2 = _class = function (_AtBase) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var $compid__6 = (0, _index.genCompid)(__prefix + "$compid__6");
-      _index.propsManager.set({
-        "className": "user-menu",
-        "src": this.__state.urlString,
-        "onMessage": this.handleMessage
-      }, $compid__6);
-      Object.assign(this.__state, {
-        $compid__6: $compid__6
-      });
+      Object.assign(this.__state, {});
       return this.__state;
     }
   }]);
 
   return detail;
-}(_base2.default), _class.$$events = [], _class.$$componentPath = "pages/news/detail/index", _temp2);
+}(_base2.default), _class.$$events = ["handleMessage"], _class.$$componentPath = "pages/news/detail/index", _temp2);
 exports.default = detail;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(detail, true));

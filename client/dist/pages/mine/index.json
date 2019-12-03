@@ -1,8 +1,7 @@
 {
   "usingComponents": {
     "profile": "./profile/index",
-    "menu": "./menu/index",
-    "activity": "./activity/index"
+    "menu": "./menu/index"
   },
   "navigationBarTitleText": "个人中心"
 }

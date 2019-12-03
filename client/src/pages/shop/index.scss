@@ -385,6 +385,9 @@ page {
   position: absolute;
   left: 30px;
   top: 140px;
+  // 320 , 240
+  width: 320px;
+  height: 240px;
   .text  {
     color: rgb(184, 58, 58);
     text-decoration:underline;
@@ -402,4 +405,17 @@ page {
     text-decoration:underline;
   }
   
+}
+.shop_main-scroll_IMG{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+ 
+  overflow: scroll;
+  width: 100%;
+}
+.shop_main-scrollimg{
+  width: 100%;
+  height: 100%;
 }

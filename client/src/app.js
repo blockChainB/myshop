@@ -44,8 +44,8 @@ class App extends Component {
         {
           pagePath: 'pages/news/index',
           text: '资讯',
-          iconPath: 'asset/shoppingbag.png',
-          selectedIconPath: 'asset/shoppingbag_active.png'
+          iconPath: 'asset/mine.png',
+          selectedIconPath: 'asset/mine_active.png'
         },
 
         {

@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import {
     View,
-  Webview
+    WebView
 } from '@tarojs/components'
 import AtBase from '../../../bases/base'
 
@@ -23,20 +23,27 @@ constructor () {
       }
     
       config = {
-        navigationBarTitleText: ''
+        navigationBarTitleText: '',
+
 }
     
  componentWillMount () {
     const params = (this.$router || this.context.$router).params
     const url = params.url
     const title = params.title;
-     console.log("url",url);
+     console.log("url",url ,title );
+
     Taro.setNavigationBarTitle({
-        title:title
+        title:'ACQUIT-资讯'
     })
-    this.setState({
-        urlString:url
-        })
+    // Taro.setStorageSync('newsURL',url)
+    const newsURL = Taro.getStorageSync('newsURL');
+    if(newsURL){
+      this.setState({
+        urlString: newsURL
+      })
+    }
+    
 
     
 }
@@ -50,10 +57,9 @@ render () {
        return (
         <View> 
 
-    <Webview className='user-menu' src={this.state.urlString} onMessage={this.handleMessage}>
+            <WebView className='user-menu' src={this.state.urlString} onMessage={this.handleMessage}> </WebView>
 
-    </Webview>
-    </View>
+       </View>
     )
  
     }

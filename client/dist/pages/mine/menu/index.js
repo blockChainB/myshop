@@ -21,7 +21,13 @@ var _index3 = require("../../../npm/classnames/index.js");
 
 var _index4 = _interopRequireDefault(_index3);
 
+var _base = require("../../../bases/base.js");
+
+var _base2 = _interopRequireDefault(_base);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -53,44 +59,11 @@ var MENU_LIST = [{
   key: 'coupon',
   text: '优惠券',
   img: "/pages/mine/menu/assets/coupon.png"
-}, {
-  key: 'red-packet',
-  text: '红包',
-  img: "/pages/mine/menu/assets/red-packet.png"
-}, {
-  key: 'allowance',
-  text: '津贴',
-  img: "/pages/mine/menu/assets/allowance.png"
-}, {
-  key: 'gif-card',
-  text: '礼品卡',
-  img: "/pages/mine/menu/assets/gif-card.png"
-}, {
-  key: 'location',
-  text: '地址管理',
-  img: "/pages/mine/menu/assets/location.png"
-}, {
-  key: 'safe',
-  text: '账号安全',
-  img: "/pages/mine/menu/assets/safe.png"
-}, {
-  key: 'contact',
-  text: '联系客服',
-  img: "/pages/mine/menu/assets/contact.png"
-}, {
-  key: 'feedback',
-  text: '用户反馈',
-  img: "/pages/mine/menu/assets/feedback.png"
-}, {
-  key: 'help',
-  text: '帮助中心',
-  url: 'http://m.you.163.com/help',
-  img: "/pages/mine/menu/assets/help.png"
 }];
 var COUNT_LINE = 3;
 
-var Menu = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(Menu, _BaseComponent);
+var Menu = (_temp2 = _class = function (_AtBase) {
+  _inherits(Menu, _AtBase);
 
   function Menu() {
     var _ref;
@@ -103,16 +76,19 @@ var Menu = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Menu.__proto__ || Object.getPrototypeOf(Menu)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray14", "MENU_LIST"], _this.handleClick = function (menu) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Menu.__proto__ || Object.getPrototypeOf(Menu)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray12", "MENU_LIST"], _this.handleClick = function (menu) {
       // NOTE 时间关系，此处只实现帮助中心，用于演示多端 webview
       if (menu.key === 'order') {
         // jump({ url: menu.url, title: menu.text })
         _index2.default.navigateTo({
           url: 'order/list/index'
         });
+      } else if (menu.key === 'coupon') {
+        _this.getYHQuan();
       } else {
+        //coupon 
         _index2.default.showToast({
-          title: '目前只实现了我的订单~',
+          title: '目前只实现了我的订单~优惠券等',
           icon: 'none'
         });
       }
@@ -127,6 +103,63 @@ var Menu = (_temp2 = _class = function (_BaseComponent) {
       this.$$refs = [];
     }
   }, {
+    key: "getYHQuan",
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var res, title;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log(".getYHQuan.", this.state.getYHMoney);
+                //添加进去,然后查询是否成功了 
+                _context.next = 3;
+                return _index2.default.cloud.callFunction({
+                  name: 'userYHQ',
+                  data: {
+                    $url: 'findYHQuan'
+
+                  }
+                });
+
+              case 3:
+                res = _context.sent;
+
+                // 成功调用
+                console.log(res, "userYHQ");
+                if (this.successCode(res) && res.result.data !== -200) {
+                  console.log(res, "findYHQuan");
+                  title = res.result.data.data[0].userYHQ.YHM;
+
+
+                  _index2.default.showToast({
+                    title: "你有一张" + title + '元优惠券',
+                    icon: 'none',
+                    duration: 2000
+                  });
+                } else if (this.successCode(res) && res.result.data === -200) {
+                  _index2.default.showToast({
+                    title: '还没有领取过呢',
+                    icon: 'none',
+                    duration: 2000
+                  });
+                }
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getYHQuan() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return getYHQuan;
+    }()
+  }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
@@ -134,7 +167,7 @@ var Menu = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var loopArray14 = MENU_LIST.map(function (menu, index) {
+      var loopArray12 = MENU_LIST.map(function (menu, index) {
         menu = {
           $original: (0, _index.internal_get_original)(menu)
         };
@@ -151,7 +184,7 @@ var Menu = (_temp2 = _class = function (_BaseComponent) {
         };
       });
       Object.assign(this.__state, {
-        loopArray14: loopArray14,
+        loopArray12: loopArray12,
         MENU_LIST: MENU_LIST
       });
       return this.__state;
@@ -159,7 +192,7 @@ var Menu = (_temp2 = _class = function (_BaseComponent) {
   }]);
 
   return Menu;
-}(_index.Component), _class.$$events = ["handleClick"], _class.$$componentPath = "pages/mine/menu/index", _temp2);
+}(_base2.default), _class.$$events = ["handleClick"], _class.$$componentPath = "pages/mine/menu/index", _temp2);
 exports.default = Menu;
 
 Component(require('../../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Menu));

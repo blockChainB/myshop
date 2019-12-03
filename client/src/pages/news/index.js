@@ -46,7 +46,14 @@ export default class Shop extends AtBase {
       }
     }
     await this.getShopData(venderId)
-   
+    Taro.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#000000',
+      animation: {
+      duration: 400,
+      timingFunc: 'easeIn'
+        }
+    })
   }
   //上拉刷新 
   async requestData () {
@@ -166,6 +173,7 @@ export default class Shop extends AtBase {
   onGotoDetail (url) {
     console.log(url,"url");
     this.jumpUrl(`/pages/news/detail/index?url=${url}`)
+    Taro.setStorageSync('newsURL',url)
  
   }
 

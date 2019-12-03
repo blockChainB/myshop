@@ -35,7 +35,16 @@ export default class Cart extends Component {
     this.pageScrollFn = throttle(this.isNeedFixedBar, 200, this)
   }
 
-  componentWillMount () {}
+  componentWillMount () {
+    Taro.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#000000',
+      animation: {
+      duration: 400,
+      timingFunc: 'easeIn'
+        }
+    })
+  }
 
   componentDidMount () {
     Taro.eventCenter.on('setState', this.setNewData.bind(this))

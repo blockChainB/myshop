@@ -1,5 +1,5 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
-        <webview compid="{{$compid__6}}"></webview>
+        <web-view class="user-menu" src="{{urlString}}" bindmessage="handleMessage"></web-view>
     </view>
 </block>

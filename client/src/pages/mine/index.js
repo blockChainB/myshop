@@ -38,7 +38,15 @@ export default class mine extends AtBase {
       }
     } catch (e) {
       // Do something when catch error
-    }    
+    } 
+    Taro.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#000000',
+      animation: {
+      duration: 400,
+      timingFunc: 'easeIn'
+        }
+    })   
 }
 
   handleLogin = () => {
@@ -63,18 +71,19 @@ export default class mine extends AtBase {
         >
           <Profile userInfo={userInfo} />
           <Menu />
-          {userInfo.nickName &&
-            <View className='user__logout' onClick={this.handleLogin}>
-              {/* <Text className='user__logout-txt'>切换账号</Text> */}
-            </View>
-          }
-          <View className='user__empty' />
+        
+          {/* <View className='user__empty' /> */}
         </ScrollView>
         <View className='user__activity'>
-          <Activity />
+          {/* <Activity /> */}
         </View>
       </View>
     )
   }
 }
 
+// {userInfo.nickName &&
+//   // <View className='user__logout' onClick={this.handleLogin}>
+//   //   {/* <Text className='user__logout-txt'>切换账号</Text> */}
+//   // </View>
+// }
